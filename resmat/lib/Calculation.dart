@@ -11,6 +11,5 @@ class CalculationPage extends StatelessWidget {
           title: Text("Cálculo"),
         ),
         floatingActionButton: FancyFab());
-
   }
 }

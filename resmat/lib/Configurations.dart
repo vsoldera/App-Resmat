@@ -1,13 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'SharedSettings.dart';
 import 'FancyFAB.dart';
+import 'Language.dart';
+
+const Locale ptbr = Locale("pt", "BR");
+const Locale english = Locale("en", "US");
 
 class ConfigurationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Configurações"),
+          title: Text('Configurações'),
         ),
         body: ConfigButtons(),
         floatingActionButton: FancyFab());
@@ -20,24 +25,31 @@ class ConfigButtons extends StatelessWidget {
       heightFactor: 3,
       child: Container(
         child: Column(
-          children: [ //Widget
+          children: [
+            //Widget
             Text('Linguagens: ', style: TextStyle(fontSize: 40)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [ 
+              children: [
                 const SizedBox(),
                 ButtonTheme(
                   minWidth: 150,
                   child: RaisedButton(
-                    onPressed: () {},
-                    child: Text('Inglês', style: TextStyle(fontSize: 20)),
-                  ),
+                      onPressed: () {
+                        
+                        SharedPreferenceSetting().setLanguage("en");
+                        AppLocalizations(english).load();
+                      },
+                      child: Text('Inglês', style: TextStyle(fontSize: 20))),
                 ),
                 const SizedBox(),
                 ButtonTheme(
                   minWidth: 150,
                   child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+  
+                      
+                    },
                     child: Text('Português', style: TextStyle(fontSize: 20)),
                   ),
                 ),
