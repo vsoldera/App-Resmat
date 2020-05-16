@@ -19,33 +19,35 @@ class AppLocalizations {
   static const LocalizationsDelegate<AppLocalizations> delegate =
       _AppLocalizationsDelegate();
 
-  Map<String, String> _localizedStrings;
+  Map<String, String> _localizedStringsEn;
+  Map<String, String> _localizedStringsPt;
+
 
   Future<bool> load() async {
-  String aaa = await SharedPreferenceSetting().getLanguage();
 
-    if (aaa == "en") {
-      print("IFI 1\n");
+      String aaa = await SharedPreferenceSetting().getLanguage();
+  
+     
       String jsonString = await rootBundle.loadString('lang/' + "en" + '.json');
       Map<String, dynamic> jsonMap = json.decode(jsonString);
     
-      _localizedStrings = jsonMap.map((key, value) {
+      _localizedStringsEn = jsonMap.map((key, value) {
+        print("en local\n"+ value.toString());
         return MapEntry(key, value.toString());
       }
       );
-      return true;
-    } else {
-      String jsonString = await rootBundle.loadString('lang/' + "pt" + '.json');
 
-      Map<String, dynamic> jsonMap = json.decode(jsonString);
+      String jsonString2 = await rootBundle.loadString('lang/' + "pt" + '.json');
+
+      Map<String, dynamic> jsonMap2 = json.decode(jsonString2);
       
-      _localizedStrings = jsonMap.map((key, value) {
+      _localizedStringsPt = jsonMap2.map((key, value) {
+          print("pt local\n"+ value.toString());
           return MapEntry(key, value.toString());
       });
 
-      return true;
     }
-  }
+  
     /*
       String jsonString = await rootBundle.loadString('lang/' + "pt" + '.json');
 
@@ -59,9 +61,15 @@ class AppLocalizations {
     }
     */
 
-  String translate(String key) {
-    return _localizedStrings[key];
+  String translate(String key, int i)  {
+     this.load();
+    if( i == 1){
+      return _localizedStringsEn[key];
+    }else return _localizedStringsPt[key];
+
+    
   }
+  
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

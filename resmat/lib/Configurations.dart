@@ -19,7 +19,22 @@ class ConfigurationsPage extends StatelessWidget {
   }
 }
 
-class ConfigButtons extends StatelessWidget {
+class ConfigButtons extends StatefulWidget{
+  
+  _ConfigButtonsWidget createState() => _ConfigButtonsWidget();
+  
+}
+
+class _ConfigButtonsWidget extends State<ConfigButtons> {
+  var var1 = "temp";
+  var v2;
+  
+  void confre() async{
+        String l = await SharedPreferenceSetting().getLanguage();
+        if(l == "en")  _toggleLanguageEN();
+        else  _toggleLanguagePT(); 
+        print("Passei no confre\n"+l);
+  }
   Widget build(BuildContext context) {
     return Center(
       heightFactor: 3,
@@ -27,7 +42,8 @@ class ConfigButtons extends StatelessWidget {
         child: Column(
           children: [
             //Widget
-            Text('Linguagens: ', style: TextStyle(fontSize: 40)),
+            
+            Text(var1, style: TextStyle(fontSize: 40)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -35,21 +51,14 @@ class ConfigButtons extends StatelessWidget {
                 ButtonTheme(
                   minWidth: 150,
                   child: RaisedButton(
-                      onPressed: () {
-                        
-                        SharedPreferenceSetting().setLanguage("en");
-                        AppLocalizations(english).load();
-                      },
+                      onPressed:   _toggleLanguageEN,
                       child: Text('Inglês', style: TextStyle(fontSize: 20))),
                 ),
                 const SizedBox(),
                 ButtonTheme(
                   minWidth: 150,
                   child: RaisedButton(
-                    onPressed: () {
-  
-                      
-                    },
+                    onPressed: _toggleLanguagePT,
                     child: Text('Português', style: TextStyle(fontSize: 20)),
                   ),
                 ),
@@ -62,8 +71,7 @@ class ConfigButtons extends StatelessWidget {
                 const SizedBox(),
                 ButtonTheme(
                   minWidth: 150,
-                  child: RaisedButton(
-                    onPressed: () {},
+                  child: RaisedButton( 
                     child: Text('Sistema Internacional',
                         style: TextStyle(fontSize: 10)),
                   ),
@@ -84,4 +92,25 @@ class ConfigButtons extends StatelessWidget {
       ),
     );
   }
+ void initState(){
+    super.initState();
+    confre();
+    print("Passei no init\n");
+
+  }
+void _toggleLanguageEN()  {
+  setState(() {
+    SharedPreferenceSetting().setLanguage("en");
+    var1 =  AppLocalizations.of(context).translate("second_string", 1);
+     print("Passei no en\n");
+  });
+}
+void _toggleLanguagePT() {
+  setState(() {
+    SharedPreferenceSetting().setLanguage("pt");
+      var1 =  AppLocalizations.of(context).translate("first_string", 2);
+         print("passei no pt\n");
+
+  });
+}
 }

@@ -5,12 +5,13 @@ class SharedPreferenceSetting {
 
   Future<String> getLanguage() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
-    final String value = pref.getString(language);
+    final String value = pref.getString('ln');
     return value;
   }
 
-  Future<bool> setLanguage(String value) async {
+  Future<void> setLanguage(String value) async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
-    return pref.setString(language, value);
+    pref.setString('ln', value);
+    return;
   }
 }
