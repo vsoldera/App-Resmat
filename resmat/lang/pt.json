@@ -7,10 +7,15 @@
     ,
     "configurations":
         {
+            "headerTitle" : "Configurações",
             "title" : "Idiomas",
             "buttonEnglish": "Inglês",
             "buttonPortuguese": "Português",
-            "secondTitle" : "Sistema de Medida"
+            "secondTitle" : "Sistema de Medida",
+            "buttonSetMedida1": "S. Internacional",
+            "buttonSetMedida2": "S. Imperial"
+
+
         }
     
     

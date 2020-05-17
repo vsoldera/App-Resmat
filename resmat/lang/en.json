@@ -7,10 +7,13 @@
     ,
     "configurations":
         {
+            "headerTitle" : "Settings",
             "title" : "Languages",
             "buttonEnglish": "English",
             "buttonPortuguese": "Portuguese",
-            "secondTitle": "Measurement System"
+            "secondTitle": "Measurement System",
+            "buttonSetMedida1": "International S.",
+            "buttonSetMedida2": "Imperial S."
         }
     
     
