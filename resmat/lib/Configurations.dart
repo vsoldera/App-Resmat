@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'SharedSettings.dart';
@@ -6,13 +8,13 @@ import 'Language.dart';
 
 const Locale ptbr = Locale("pt", "BR");
 const Locale english = Locale("en", "US");
-
+var ln;
 class ConfigurationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Configurações'),
+          title: Text("Configurações"),
         ),
         body: ConfigButtons(),
         floatingActionButton: FancyFab());
@@ -25,16 +27,19 @@ class ConfigButtons extends StatefulWidget{
   
 }
 
+void confre() async{
+    String aux = await SharedPreferenceSetting().getLanguage();
+    if(aux == "en")  ln = "en";
+    else  ln = "pt"; 
+  }
+
+
+
 class _ConfigButtonsWidget extends State<ConfigButtons> {
   var var1 = "temp";
-  var v2;
+
   
-  void confre() async{
-        String l = await SharedPreferenceSetting().getLanguage();
-        if(l == "en")  _toggleLanguageEN();
-        else  _toggleLanguagePT(); 
-        print("Passei no confre\n"+l);
-  }
+  
   Widget build(BuildContext context) {
     return Center(
       heightFactor: 3,
@@ -42,8 +47,7 @@ class _ConfigButtonsWidget extends State<ConfigButtons> {
         child: Column(
           children: [
             //Widget
-            
-            Text(var1, style: TextStyle(fontSize: 40)),
+            Text(AppLocalizations.of(context).translate("configurations", ln, "title"), style: TextStyle(fontSize: 40)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -52,14 +56,14 @@ class _ConfigButtonsWidget extends State<ConfigButtons> {
                   minWidth: 150,
                   child: RaisedButton(
                       onPressed:   _toggleLanguageEN,
-                      child: Text('Inglês', style: TextStyle(fontSize: 20))),
+                      child: Text(AppLocalizations.of(context).translate("configurations", ln, "buttonEnglish"), style: TextStyle(fontSize: 20))),
                 ),
                 const SizedBox(),
                 ButtonTheme(
                   minWidth: 150,
                   child: RaisedButton(
                     onPressed: _toggleLanguagePT,
-                    child: Text('Português', style: TextStyle(fontSize: 20)),
+                    child: Text(AppLocalizations.of(context).translate("configurations", ln, "buttonPortuguese"), style: TextStyle(fontSize: 20)),
                   ),
                 ),
               ],
@@ -71,7 +75,8 @@ class _ConfigButtonsWidget extends State<ConfigButtons> {
                 const SizedBox(),
                 ButtonTheme(
                   minWidth: 150,
-                  child: RaisedButton( 
+                  child: RaisedButton  ( 
+                    onPressed: () {},
                     child: Text('Sistema Internacional',
                         style: TextStyle(fontSize: 10)),
                   ),
@@ -92,25 +97,29 @@ class _ConfigButtonsWidget extends State<ConfigButtons> {
       ),
     );
   }
+  
+
  void initState(){
     super.initState();
     confre();
-    print("Passei no init\n");
+    print("Passei no init\n" + var1);
 
   }
 void _toggleLanguageEN()  {
   setState(() {
     SharedPreferenceSetting().setLanguage("en");
-    var1 =  AppLocalizations.of(context).translate("second_string", 1);
-     print("Passei no en\n");
+    // var1 = AppLocalizations.of(context).translate("configurations", "en", "title");
+    ln = "en";
+     //print("Passei no en\n");
   });
 }
 void _toggleLanguagePT() {
   setState(() {
-    SharedPreferenceSetting().setLanguage("pt");
-      var1 =  AppLocalizations.of(context).translate("first_string", 2);
-         print("passei no pt\n");
-
+    //SharedPreferenceSetting().setLanguage("pt");
+    //  var1 =  AppLocalizations.of(context).translate("configurations", "pt", "title");
+      //   print("passei no pt\n");
+    ln = "pt";
   });
 }
+
 }

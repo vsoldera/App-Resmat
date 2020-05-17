@@ -9,8 +9,8 @@ class CreditsPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-             AppLocalizations.of(context).translate("second_string", 1),
-            ),
+              "O cu de quem ta lendo"
+              ),
         ),
         body: Photos(),
         floatingActionButton: FancyFab());
