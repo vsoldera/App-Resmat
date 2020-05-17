@@ -1,16 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'FancyFAB.dart';
-import 'Language.dart';
 
 class CreditsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-             AppLocalizations.of(context).translate("second_string", 1),
-            ),
+          //Alteração de fonte: https://flutter.dev/docs/cookbook/design/fonts
+          title: Text("O cu de quem ta lendo",  style: TextStyle(fontFamily: 'Myriad')),      
         ),
         body: Photos(),
         floatingActionButton: FancyFab());

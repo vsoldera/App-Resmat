@@ -3,9 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:resmat/SharedSettings.dart';
 
-import 'main.dart';
 
 class AppLocalizations {
   final Locale locale;
@@ -19,31 +17,27 @@ class AppLocalizations {
   static const LocalizationsDelegate<AppLocalizations> delegate =
       _AppLocalizationsDelegate();
 
-  Map<String, String> _localizedStringsEn;
-  Map<String, String> _localizedStringsPt;
+  Map<String, dynamic> _localizedStringsEn;
+  Map<String, dynamic> _localizedStringsPt;
 
 
   Future<bool> load() async {
-
-      String aaa = await SharedPreferenceSetting().getLanguage();
-  
      
       String jsonString = await rootBundle.loadString('lang/' + "en" + '.json');
       Map<String, dynamic> jsonMap = json.decode(jsonString);
     
       _localizedStringsEn = jsonMap.map((key, value) {
-        print("en local\n"+ value.toString());
-        return MapEntry(key, value.toString());
-      }
-      );
+        // print("pt local\n"+ value.toString());
+          return MapEntry(key, value);
+      });
 
       String jsonString2 = await rootBundle.loadString('lang/' + "pt" + '.json');
 
       Map<String, dynamic> jsonMap2 = json.decode(jsonString2);
       
       _localizedStringsPt = jsonMap2.map((key, value) {
-          print("pt local\n"+ value.toString());
-          return MapEntry(key, value.toString());
+        //  print("pt local\n"+ value.toString());
+          return MapEntry(key, value);
       });
 
     }
@@ -61,11 +55,11 @@ class AppLocalizations {
     }
     */
 
-  String translate(String key, int i)  {
+   String translate(String key, String language, String key2)  {
      this.load();
-    if( i == 1){
-      return _localizedStringsEn[key];
-    }else return _localizedStringsPt[key];
+    if( language == "en"){
+      return _localizedStringsEn[key][key2].toString();
+    }else return _localizedStringsPt[key][key2].toString();
 
     
   }

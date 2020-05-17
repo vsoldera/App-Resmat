@@ -1,4 +1,22 @@
 {
-    "first_string": "Eae Brasil",
-    "second_string": "Ué fala ae"
+    "home":
+        {
+            "title" : "Início",
+            "buttonEnglish": ""
+        }
+    ,
+    "configurations":
+        {
+            "headerTitle" : "Configurações",
+            "title" : "Idiomas",
+            "buttonEnglish": "Inglês",
+            "buttonPortuguese": "Português",
+            "secondTitle" : "Sistema de Medida",
+            "buttonSetMedida1": "S. Internacional",
+            "buttonSetMedida2": "S. Imperial"
+
+
+        }
+    
+    
 }
