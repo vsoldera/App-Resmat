@@ -36,7 +36,16 @@ flutter:
       fonts:
         - asset: fonts/myriad-italic.ttf
           style: italic
+    - family: Myriad-Bold
+      fonts:
         - asset: fonts/MyriadPro.ttf
+          weight: 800
+
+    - family: Myriad-Italic-Bold
+      fonts:
+        - asset: fonts/myriad-apple-bold-italic.ttf
+          weight: 800
+
     - family: Myriad-Regular
       fonts:         
         - asset: fonts/myriadregular.ttf
