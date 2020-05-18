@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'SharedSettings.dart';
@@ -13,7 +15,6 @@ class ConfigurationsPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text("Configurações"),
-          
         ),
         body: ConfigButtons(),
         floatingActionButton: FancyFab());

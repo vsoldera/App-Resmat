@@ -29,7 +29,9 @@ class AppLocalizations {
       _localizedStringsEn = jsonMap.map((key, value) {
         // print("pt local\n"+ value.toString());
           return MapEntry(key, value);
+
       });
+
 
       String jsonString2 = await rootBundle.loadString('lang/' + "pt" + '.json');
 

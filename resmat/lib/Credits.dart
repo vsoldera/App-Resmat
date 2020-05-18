@@ -7,8 +7,9 @@ class CreditsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          //Alteração de fonte: https://flutter.dev/docs/cookbook/design/fonts
+//Alteração de fonte: https://flutter.dev/docs/cookbook/design/fonts
           title: Text("O cu de quem ta lendo",  style: TextStyle(fontFamily: 'Myriad')),      
+
         ),
         body: Photos(),
         floatingActionButton: FancyFab());
