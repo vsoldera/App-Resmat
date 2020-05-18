@@ -3,9 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:resmat/SharedSettings.dart';
 
-import 'main.dart';
 
 class AppLocalizations {
   final Locale locale;
@@ -31,7 +29,9 @@ class AppLocalizations {
       _localizedStringsEn = jsonMap.map((key, value) {
         // print("pt local\n"+ value.toString());
           return MapEntry(key, value);
-      });;
+
+      });
+
 
       String jsonString2 = await rootBundle.loadString('lang/' + "pt" + '.json');
 
