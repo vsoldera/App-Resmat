@@ -1,15 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:resmat/SharedSettings.dart';
 import 'Home.dart';
 import 'Language.dart';
-import 'dart:io';
-import 'dart:async';
+
 
 void main()  {
   runApp(
     MaterialApp(
+      theme: ThemeData(fontFamily: 'Myriad-Regular'),
       home: MyLanguage(), //run the home page of the application
     ),
   );

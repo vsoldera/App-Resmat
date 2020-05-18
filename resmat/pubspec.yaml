@@ -14,6 +14,7 @@ dependencies:
   path_provider: ^1.6.7
   flutter:
     sdk: flutter
+    
   shared_preferences: ^0.4.2
 
 #Para alteração de idioma
@@ -30,6 +31,17 @@ dev_dependencies:
 
 
 flutter:
+  fonts:
+    - family: Myriad
+      fonts:
+        - asset: fonts/myriad-italic.ttf
+          style: italic
+        - asset: fonts/MyriadPro.ttf
+    - family: Myriad-Regular
+      fonts:         
+        - asset: fonts/myriadregular.ttf
+      
+          weight: 700
   uses-material-design: true
 
   assets:
@@ -37,3 +49,4 @@ flutter:
     - lang/en.json
     - lang/pt.json
 
+  

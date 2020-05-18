@@ -1,4 +1,20 @@
 {
-    "first_string": "Hello! This is the first message.",
-    "second_string": "Like Like"
+    "home":
+        {
+            "title" : "Home",
+            "buttonEnglish": ""
+        }
+    ,
+    "configurations":
+        {
+            "headerTitle" : "Settings",
+            "title" : "Languages",
+            "buttonEnglish": "English",
+            "buttonPortuguese": "Portuguese",
+            "secondTitle": "Measurement System",
+            "buttonSetMedida1": "International S.",
+            "buttonSetMedida2": "Imperial S."
+        }
+    
+    
 }

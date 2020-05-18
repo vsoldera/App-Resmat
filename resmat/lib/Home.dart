@@ -50,7 +50,7 @@ class MenuButtons extends StatelessWidget {
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ConfigurationsPage()),
+                          builder: (context) => ConfigButtons()),
                       ModalRoute.withName("/Home"));
                 },
                 child: Text('Configurações',
