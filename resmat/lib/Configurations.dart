@@ -9,19 +9,9 @@ import 'Language.dart';
 const Locale ptbr = Locale("pt", "BR");
 const Locale english = Locale("en", "US");
 Future<String> switchDeLinguagem;
-class ConfigurationsPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("Configurações"),
-        ),
-        body: ConfigButtons(),
-        floatingActionButton: FancyFab());
-  }
-}
 
-class ConfigButtons extends StatefulWidget{
+
+class ConfigurationsPage extends StatefulWidget{
   
   _ConfigButtonsWidget createState() => _ConfigButtonsWidget();
  // State<FutureBuilder<_ConfigButtonsWidget>> createState() => _ConfigButtonsWidget<T>();
@@ -31,7 +21,7 @@ class ConfigButtons extends StatefulWidget{
 
 
 
-class _ConfigButtonsWidget extends State<ConfigButtons> {
+class _ConfigButtonsWidget extends State<ConfigurationsPage> {
 
 
   Future<String> verificaSetLinguagemDeUsuario() async{
@@ -58,57 +48,162 @@ class _ConfigButtonsWidget extends State<ConfigButtons> {
           builder:(context, snapshot) {
             if (snapshot.hasData) {
              
-              print("Snapshot: "+ snapshot.data);
-              print("LN - Snapshot: "+ snapshot.data);
+              //print("Snapshot: "+ snapshot.data);
+             // print("LN - Snapshot: "+ snapshot.data);
                   return Container(
+                            margin: EdgeInsets.fromLTRB(20, 50, 20, 20), // margem do corpo inteiro
                             child: Column(
                               children: [
                                 //Widget
-                                Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "title"), style: TextStyle(fontSize: 40)),
-                                Row(
+                                Container(
+                                  child:Row(
+                                    children: <Widget>[
+                                      Container(
+                                        child: Align(alignment: Alignment.topLeft,child: Text("< "+AppLocalizations.of(context).translate("configurations", snapshot.data, "backButtonText"),textAlign: TextAlign.left, style: TextStyle(fontSize: 25, fontFamily: 'Myriad-Regular',  color: Color.fromRGBO(77, 76, 76, 1))))
+                                      ),
+                                    ],
+                                  )
+                                ),
+                                Container(
+                                  margin: EdgeInsets.fromLTRB(0, 0, 0, 50),
+                                  child:Row(
+                                    children: <Widget>[
+                                      Container(
+                                        child: Align(alignment: Alignment.centerLeft,child: Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "headerTitle"),textAlign: TextAlign.left, style: TextStyle(fontSize: 45, fontFamily: 'Myriad-Bold',  color: Color.fromRGBO(255, 86, 113, 1))))
+                                      ),
+
+                                    ],
+                                  )
+                                ),
+                                Align(alignment: Alignment.topLeft,child: Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "title"),textAlign: TextAlign.left, style: TextStyle(fontSize: 30, fontFamily: 'Myriad-Bold',  color: Color.fromRGBO(77, 76, 76, 1)))),
+                                Container(
+                                  margin: EdgeInsets.fromLTRB(0, 0, 0, 50),
+                                  child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     const SizedBox(),
-                                    ButtonTheme(
-                                      minWidth: 150,
-                                      child: RaisedButton(
+                                     Expanded(
+                                      child: Container(
+                                      margin: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                                      child: FlatButton(
+                                         shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                          side: BorderSide(color: Colors.red)),
+                                          color: Color.fromRGBO(255, 86, 113, 1),
+                                          textColor: Colors.white,
                                           onPressed:   _toggleLanguageEN,
-                                          child: Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "buttonEnglish"), style: TextStyle(fontSize: 20))),
-                                    ),
-                                    const SizedBox(),
-                                    ButtonTheme(
-                                      minWidth: 150,
-                                      child: RaisedButton(
-                                        onPressed: _toggleLanguagePT,
-                                        child: Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "buttonPortuguese"), style: TextStyle(fontSize: 20)),
+                                          child:  
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: <Widget>[
+                                              SizedBox(child: Image.asset('images/inglaterraicon.png'), width:30 ),
+                                              Container(
+                                              margin: EdgeInsets.fromLTRB(5, 0, 0, 0), // margin interna img e texto
+                                              height: 60,
+                                              child: Align(alignment: AlignmentDirectional.centerEnd ,child:Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "buttonEnglish"), style: TextStyle(fontSize: 18)))
+                                              ),
+                                            
+
+                                            ],
+                                          )  
                                       ),
                                     ),
-                                  ],
-                                ),
-                                Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "secondTitle"), style: TextStyle(fontSize: 30)),
-                                Row(
+                                  ),
+                                   
+                                    const SizedBox(),
+                                   
+                                    Expanded(
+                                      child: Container(
+                                      margin: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                                      child: FlatButton(
+                                         shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                          side: BorderSide(color: Colors.red)),
+                                          color: Color.fromRGBO(255, 86, 113, 1),
+                                          textColor: Colors.white,
+                                          onPressed:   _toggleLanguagePT,
+                                          child:  
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: <Widget>[
+                                            SizedBox(child: Image.asset('images/bricon.png'), width:30 ),
+                                            Container(
+                                            margin: EdgeInsets.fromLTRB(5, 0, 0, 0), // margin interna img e texto
+                                            height: 60,
+                                            child: Align(alignment: AlignmentDirectional.center,child:Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "buttonPortuguese"), style: TextStyle(fontSize: 18)))
+                                            ),
+
+                                          ],)
+                                          
+                                      ),
+                                    ),
+                                    
+                                    ),
+                                ], 
+                              ),
+                            ),
+                                Align(alignment: Alignment.topLeft,child: Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "secondTitle"),textAlign: TextAlign.left, style: TextStyle(fontSize: 30, fontFamily: 'Myriad-Bold', color: Color.fromRGBO(77, 76, 76, 1)))),
+                                Container(
+                                  child:Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     const SizedBox(),
-                                    ButtonTheme(
-                                      minWidth: 150,
-                                      child: RaisedButton  ( 
-                                        onPressed: () {},
-                                        child: Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "buttonSetMedida1"),
-                                            style: TextStyle(fontSize: 10)),
+                                    Expanded(
+                                      child: Container(
+                                      margin: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                                      child: FlatButton(
+                                         shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                          side: BorderSide(color: Colors.red)),
+                                          color: Color.fromRGBO(255, 86, 113, 1),
+                                          textColor: Colors.white,
+                                          onPressed:  (){},
+                                          child:  
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: <Widget>[
+                                              Container(
+                                              margin: EdgeInsets.fromLTRB(5, 0, 0, 0), // margin interna img e texto
+                                              height: 60,
+                                              child: Align(alignment: AlignmentDirectional.centerEnd ,child:Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "buttonSetMedida1"), style: TextStyle(fontSize: 18)))
+                                              ),
+                                            
+
+                                            ],
+                                          )  
                                       ),
                                     ),
+                                  ),
                                     const SizedBox(),
-                                    ButtonTheme(
-                                      minWidth: 150,
-                                      child: RaisedButton(
-                                        onPressed: () {},
-                                        child: Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "buttonSetMedida2"),
-                                            style: TextStyle(fontSize: 10)),
+                                    Expanded(
+                                      child: Container(
+                                      margin: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                                      child: FlatButton(
+                                         shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                          side: BorderSide(color: Colors.red)),
+                                          color: Color.fromRGBO(255, 86, 113, 1),
+                                          textColor: Colors.white,
+                                          onPressed:  (){},
+                                          child:  
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: <Widget>[
+                                              Container(
+                                              margin: EdgeInsets.fromLTRB(5, 0, 0, 0), // margin interna img e texto
+                                              height: 60,
+                                              child: Align(alignment: AlignmentDirectional.centerEnd ,child:Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "buttonSetMedida2"), style: TextStyle(fontSize: 18)))
+                                              ),
+                                            ],
+                                          )  
                                       ),
                                     ),
+                                  ),
+
+
                                   ],
                                 ),
+                                  )
                               ],
                             ),
                           );
@@ -126,20 +221,7 @@ class _ConfigButtonsWidget extends State<ConfigButtons> {
 
 
     return Scaffold(
-      appBar: AppBar(
-                title: Container(
-                  child: FutureBuilder(
-                          future: switchDeLinguagem, // a mesma logica utilizada para o body, vale pra ca. SwitchLg, continua sendo nossa chave para o "futuro"
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                             return Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "headerTitle"));
-                            }else{
-                             return Text("Configurações");
-                            }
-                            },
-                        ),
-                      ),
-          ),
+      appBar: null,
           body: body,
           floatingActionButton: FancyFab()
       

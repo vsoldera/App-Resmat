@@ -7,8 +7,9 @@
     ,
     "configurations":
         {
+            "backButtonText":"Back",
             "headerTitle" : "Settings",
-            "title" : "Languages",
+            "title" : "Language",
             "buttonEnglish": "English",
             "buttonPortuguese": "Portuguese",
             "secondTitle": "Measurement System",

@@ -7,13 +7,14 @@
     ,
     "configurations":
         {
-            "headerTitle" : "Configurações",
-            "title" : "Idiomas",
+            "backButtonText":"Voltar",
+            "headerTitle" : "Ajustes",
+            "title" : "Idioma",
             "buttonEnglish": "Inglês",
             "buttonPortuguese": "Português",
             "secondTitle" : "Sistema de Medida",
-            "buttonSetMedida1": "S. Internacional",
-            "buttonSetMedida2": "S. Imperial"
+            "buttonSetMedida1": "Internacional",
+            "buttonSetMedida2": "Imperial"
 
 
         }

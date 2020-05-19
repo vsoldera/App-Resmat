@@ -23,16 +23,18 @@ class Home extends StatelessWidget {
 
 class MenuButtons extends StatelessWidget {
 
-  var btnCalculo = Expanded(
+Widget build(BuildContext context) {
+var btnCalculo = Expanded(
                 child: Container(
                   decoration: new BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black26,
-                          blurRadius: 3.0, // soften the shadow
+                          blurRadius: 10.0, // soften the shadow
                           spreadRadius: 0.0, //extend the shadow
                           offset: Offset(
-                            10.0, // Move to right 10  horizontally
+                            0.0, // Move to right 10  horizontally
                             8.0, // Move to bottom 10 Vertically
                           ),
                         )
@@ -57,7 +59,8 @@ class MenuButtons extends StatelessWidget {
                     Column(
                       children: <Widget> [  
                         Container(
-                    padding: const EdgeInsets.fromLTRB(15, 130, 5, 10),
+                          alignment: Alignment.bottomRight,
+                    padding: const EdgeInsets.fromLTRB(0, 130, 5, 10),
                     child: const Text('CÁLCULO', style: TextStyle(fontFamily: 'Myriad-Bold', fontSize: 29)),
                     )],                
                     ),
@@ -71,20 +74,28 @@ class MenuButtons extends StatelessWidget {
 var btnAjustes = Expanded(
                 child: Container(
                   decoration: new BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black26,
-                          blurRadius: 3.0, // soften the shadow
+                          blurRadius: 10.0, // soften the shadow
                           spreadRadius: 0.0, //extend the shadow
                           offset: Offset(
-                            10.0, // Move to right 10  horizontally
+                            0.0, // Move to right 10  horizontally
                             8.0, // Move to bottom 10 Vertically
                           ),
                         )
                       ],
                   ),
                 child: RaisedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ConfigurationsPage()),
+                      ModalRoute.withName("/Home"));
+                },
                 textColor: Color(0xFFFF5671),
                 padding: const EdgeInsets.all(0.0),
                 child: Container(
@@ -102,7 +113,8 @@ var btnAjustes = Expanded(
                     Column(
                       children: <Widget> [  
                         Container(
-                    padding: const EdgeInsets.fromLTRB(20, 130, 5, 10),
+                           alignment: Alignment.bottomRight,
+                    padding: const EdgeInsets.fromLTRB(0, 130, 5, 10),
                     child: const Text('AJUSTES', style: TextStyle(fontFamily: 'Myriad-Bold', fontSize: 29)),
                     )],                
                     ),
@@ -113,23 +125,25 @@ var btnAjustes = Expanded(
   ),
   );
 
-var btnCreditos = 
-                 Expanded(
+var btnCreditos = Expanded(
                 child: Container(
                   decoration: new BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black26,
-                          blurRadius: 3.0, // soften the shadow
+                          blurRadius: 10.0, // soften the shadow
                           spreadRadius: 0.0, //extend the shadow
                           offset: Offset(
-                            10.0, // Move to right 10  horizontally
+                            0.0, // Move to right 10  horizontally
                             8.0, // Move to bottom 10 Vertically
                           ),
                         )
                       ],
                   ),
                 child: RaisedButton(
+                
                 onPressed: () {},
                 textColor: Color(0xFFFF5671),
                 padding: const EdgeInsets.all(0.0),
@@ -148,8 +162,9 @@ var btnCreditos =
                     Column(
                       children: <Widget> [  
                         Container(
-                    padding: const EdgeInsets.fromLTRB(185, 60, 5, 10),
-                    child: const Text('CRÉDITOS', style: TextStyle(fontFamily: 'Myriad-Bold', fontSize: 29)),
+                    alignment: Alignment.bottomRight,
+                    padding: const EdgeInsets.fromLTRB(165, 70, 5, 10),
+                    child: Text('CRÉDITOS', style: TextStyle(fontFamily: 'Myriad-Bold', fontSize: 29)),
                     )],                
                     ),
                  
@@ -159,13 +174,7 @@ var btnCreditos =
   ),
   );
 
-
-
-
-
-
-  Widget build(BuildContext context) {
-    return
+  return
     Container(
       margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
       child:
