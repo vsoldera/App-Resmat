@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:resmat/Home.dart';
 import 'SharedSettings.dart';
-import 'Language.dart';
 
 const Locale ptbr = Locale("pt", "BR");
 const Locale english = Locale("en", "US");
