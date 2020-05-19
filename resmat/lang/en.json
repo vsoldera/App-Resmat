@@ -13,9 +13,12 @@
             "buttonEnglish": "English",
             "buttonPortuguese": "Portuguese",
             "secondTitle": "Measurement System",
-            "buttonSetMedida1": "International S.",
-            "buttonSetMedida2": "Imperial S."
+            "buttonSetMedida1": "International",
+            "buttonSetMedida2": "Imperial"
         }
+    
+
+
     
     
 }

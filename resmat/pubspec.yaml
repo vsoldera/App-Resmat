@@ -1,11 +1,7 @@
 name: resmat
 description: A new Flutter project.
 
-publish_to: 'none' 
 
-version: 1.0.0+1
-flutter_redux: ^0.5.3 
-redux: ^3.0.0
 environment:
   sdk: ">=2.7.0 <3.0.0"
 

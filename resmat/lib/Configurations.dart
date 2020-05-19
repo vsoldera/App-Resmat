@@ -1,9 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:resmat/Home.dart';
 import 'SharedSettings.dart';
-import 'FancyFAB.dart';
 import 'Language.dart';
 
 const Locale ptbr = Locale("pt", "BR");
@@ -37,10 +35,7 @@ class _ConfigButtonsWidget extends State<ConfigurationsPage> {
 
   
   Widget build(BuildContext context) {
-    var titlePagina = "Settings";
-    var appBar = AppBar(
-                title: Text(titlePagina),
-              );
+    
     var body = Center(//BODY DO APP
       heightFactor: 3,
       child: FutureBuilder(
@@ -58,9 +53,15 @@ class _ConfigButtonsWidget extends State<ConfigurationsPage> {
                                 Container(
                                   child:Row(
                                     children: <Widget>[
-                                      Container(
-                                        child: Align(alignment: Alignment.topLeft,child: Text("< "+AppLocalizations.of(context).translate("configurations", snapshot.data, "backButtonText"),textAlign: TextAlign.left, style: TextStyle(fontSize: 25, fontFamily: 'Myriad-Regular',  color: Color.fromRGBO(77, 76, 76, 1))))
-                                      ),
+
+                                        //Botao voltar
+                                        FlatButton( 
+                                          onPressed: ( ) {
+                                            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()),     ModalRoute.withName("/Home") ); },
+                                          child: Align(alignment: Alignment.topLeft,child: Text("< "+AppLocalizations.of(context).translate("configurations", snapshot.data, "backButtonText"),textAlign: TextAlign.left, style: TextStyle(fontSize: 25, fontFamily: 'Myriad-Regular',  color: Color.fromRGBO(77, 76, 76, 1))))
+                                          )
+                        
+                                      
                                     ],
                                   )
                                 ),
@@ -222,13 +223,8 @@ class _ConfigButtonsWidget extends State<ConfigurationsPage> {
 
     return Scaffold(
       appBar: null,
-          body: body,
-          floatingActionButton: FancyFab()
-      
+          body: body,  
       );
-    
-    
-   
   }
   
 

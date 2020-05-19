@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'FancyFAB.dart';
 
 class CreditsPage extends StatelessWidget {
   @override
@@ -8,11 +7,11 @@ class CreditsPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
 //Alteração de fonte: https://flutter.dev/docs/cookbook/design/fonts
-          title: Text("O cu de quem ta lendo",  style: TextStyle(fontFamily: 'Myriad')),      
+          title: Text("Créditos",  style: TextStyle(fontFamily: 'Myriad')),      
 
         ),
         body: Photos(),
-        floatingActionButton: FancyFab());
+        );
   }
 }
 
