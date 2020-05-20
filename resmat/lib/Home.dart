@@ -61,11 +61,11 @@ class MenuButtons extends StatelessWidget {
                                   Container(
                                     alignment: Alignment.bottomRight,
                                     padding: const EdgeInsets.fromLTRB(
-                                        0, 130, 5, 10),
+                                        20, 135, 5, 10),
                                     child: const Text('CÁLCULO',
                                         style: TextStyle(
                                             fontFamily: 'Myriad-Bold',
-                                            fontSize: 24)),
+                                            fontSize: 26)),
                                   )
                                 ],
                               ),
@@ -123,10 +123,10 @@ class MenuButtons extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           alignment: Alignment.bottomRight,
-                          padding: const EdgeInsets.fromLTRB(0, 130, 5, 10),
+                          padding: const EdgeInsets.fromLTRB(20, 135, 5, 10),
                           child: const Text('AJUSTES',
                               style: TextStyle(
-                                  fontFamily: 'Myriad-Bold', fontSize: 24)),
+                                  fontFamily: 'Myriad-Bold', fontSize: 26)),
                         )
                       ],
                     ),
@@ -174,10 +174,10 @@ class MenuButtons extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           alignment: Alignment.bottomRight,
-                          padding: const EdgeInsets.fromLTRB(165, 70, 5, 10),
+                          padding: const EdgeInsets.fromLTRB(180, 75, 5, 10),
                           child: Text('CRÉDITOS',
                               style: TextStyle(
-                                  fontFamily: 'Myriad-Bold', fontSize: 24)),
+                                  fontFamily: 'Myriad-Bold', fontSize: 26)),
                         )
                       ],
                     ),

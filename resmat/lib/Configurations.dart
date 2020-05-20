@@ -58,8 +58,17 @@ class _ConfigButtonsWidget extends State<ConfigurationsPage> {
                                         FlatButton( 
                                           onPressed: ( ) {
                                             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()),     ModalRoute.withName("/Home") ); },
-                                          child: Align(alignment: Alignment.topLeft,child: Text("< "+AppLocalizations.of(context).translate("configurations", snapshot.data, "backButtonText"),textAlign: TextAlign.left, style: TextStyle(fontSize: 25, fontFamily: 'Myriad-Regular',  color: Color.fromRGBO(77, 76, 76, 1))))
-                                          )
+                                          child: Row(
+                                            children: <Widget>[
+                                              SizedBox(
+                                                child: Image.asset('images/arrow.png'),
+                                                width: 20),
+                                              Align(alignment:  Alignment.topLeft,child: Text(" "+AppLocalizations.of(context).translate("configurations", snapshot.data, "backButtonText"),textAlign: TextAlign.left, style: TextStyle(fontSize: 25, fontFamily: 'Myriad-Regular',  color: Color.fromRGBO(77, 76, 76, 1))))
+
+                                            ],
+                                          ) 
+                                          
+                                        )
                         
                                       
                                     ],
@@ -210,9 +219,9 @@ class _ConfigButtonsWidget extends State<ConfigurationsPage> {
                           );
             }//endif
             else {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
+                return Center(
+                child: CircularProgressIndicator(),
+            );
 
             }//endelse
           }

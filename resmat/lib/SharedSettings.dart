@@ -13,4 +13,16 @@ class SharedPreferenceSetting {
     pref.setString('language', value);
     return;
   }
+
+    Future<String> getSystem() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    final String value = pref.getString('system');
+    return value;
+  }
+
+  Future<void> setSystem(String value) async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString('system', value);
+    return;
+  }
 }
