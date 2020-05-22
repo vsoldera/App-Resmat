@@ -8,6 +8,7 @@ import 'Language.dart';
 void main()  {
   runApp(
     MaterialApp(
+       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Myriad-Regular'),
       home: MyLanguage(), //run the home page of the application
     ),

@@ -2,7 +2,9 @@
     "home":
         {
             "title" : "Início",
-            "buttonEnglish": ""
+            "button1": "CALCULAR",
+            "button2": "AJUSTES",
+            "button3": "CRÉDITOS"
         }
     ,
     "configurations":
