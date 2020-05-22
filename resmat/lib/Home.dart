@@ -2,26 +2,33 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'Configurations.dart';
 import 'Language.dart';
+import 'SharedSettings.dart';
+import 'Language.dart';
 
-class Home extends StatelessWidget {
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: null,
-        body: Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("images/back1.jpg"), fit: BoxFit.fill)),
-            child: Center(heightFactor: 5, child: MenuButtons())));
-  }
+class Home extends StatefulWidget {
+
+   _HomeWidget createState() => _HomeWidget();
+
+ 
 }
 
-class MenuButtons extends StatelessWidget {
+class _HomeWidget extends State<Home> {
+ Future<String> verificaSetLinguagemDeUsuario() async{
+    String aux = await SharedPreferenceSetting().getLanguage();
+    if(aux == "en"){
+      return "en";
+    }
+    else{
+      return "pt"; 
+
+    }
+  }
+
+
+
+
   Widget build(BuildContext context) {
     var btnCalculo = Expanded(
-
-
-  
-
                 child: Container(
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
@@ -61,11 +68,27 @@ class MenuButtons extends StatelessWidget {
                                   Container(
                                     alignment: Alignment.bottomRight,
                                     padding: const EdgeInsets.fromLTRB(
-                                        20, 135, 5, 10),
-                                    child: const Text('CÁLCULO',
-                                        style: TextStyle(
-                                            fontFamily: 'Myriad-Bold',
-                                            fontSize: 26)),
+                                        0, 135, 5, 10),
+                                    width: MediaQuery.of(context).size.width * 0.35,
+                                    child: 
+                                    FutureBuilder(
+                                      future: switchDeLinguagem,
+                                      builder: (context, snapshot) {
+                                        if (snapshot.hasData) {
+                                          return 
+                                            Text(AppLocalizations.of(context).translate("home", snapshot.data, "button1"),
+                                            style: TextStyle(
+                                            fontFamily: 'Myriad-Bold', fontSize: 24));
+                                        }else{
+                                          return 
+                                          Center(
+                                              child: CircularProgressIndicator(),
+                                            );
+                                        }
+                                      
+                                      
+                                      }),
+
                                   )
                                 ],
                               ),
@@ -77,8 +100,6 @@ class MenuButtons extends StatelessWidget {
 
         );
         
-
-
     var btnAjustes = Expanded(
       child: Container(
           decoration: new BoxDecoration(
@@ -123,10 +144,30 @@ class MenuButtons extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           alignment: Alignment.bottomRight,
-                          padding: const EdgeInsets.fromLTRB(20, 135, 5, 10),
-                          child: const Text('AJUSTES',
-                              style: TextStyle(
-                                  fontFamily: 'Myriad-Bold', fontSize: 26)),
+                          width: MediaQuery.of(context).size.width * 0.32,
+                          padding: const EdgeInsets.fromLTRB(0, 135, 5, 10),
+                          child:                          
+                          FutureBuilder(
+                            future: switchDeLinguagem,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return 
+                                  Text(AppLocalizations.of(context).translate("home", snapshot.data, "button2"),
+                                  style: TextStyle(
+                                  fontFamily: 'Myriad-Bold', fontSize: 24));
+                              }else{
+                                 return 
+                                 Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                              }
+                            
+                            
+                            }),
+
+
+
+
                         )
                       ],
                     ),
@@ -174,11 +215,30 @@ class MenuButtons extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           alignment: Alignment.bottomRight,
-                          padding: const EdgeInsets.fromLTRB(180, 75, 5, 10),
-                          child: Text('CRÉDITOS',
-                              style: TextStyle(
-                                  fontFamily: 'Myriad-Bold', fontSize: 26)),
+                          width: MediaQuery.of(context).size.width * 0.75,
+                          padding: const EdgeInsets.fromLTRB(0, 80, 0, 0),
+                          child: FutureBuilder(
+                            future: switchDeLinguagem,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return 
+                                  Text(AppLocalizations.of(context).translate("home", snapshot.data, "button3"),textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                  fontFamily: 'Myriad-Bold', fontSize: 24));
+                              }else{
+                                 return 
+                                 Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                              }
+                            
+                            
+                            }),
+                          
+                         
                         )
+
+
                       ],
                     ),
                   ],
@@ -186,7 +246,8 @@ class MenuButtons extends StatelessWidget {
           )),
     );
 
-    return Container(
+ 
+     var body = Container(
       margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -207,5 +268,23 @@ class MenuButtons extends StatelessWidget {
         ],
       ),
     );
+ 
+
+
+
+
+ return Scaffold(
+        appBar: null,
+        body: Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("images/back1.jpg"), fit: BoxFit.fill)),
+            child: Center(heightFactor: 5, child: body )));
+ }
+
+  void initState(){
+    switchDeLinguagem = verificaSetLinguagemDeUsuario(); // a chamada de valor DEVE SER SEMPRE antes do initSate*** devido a arvore de construcao do widget
+    super.initState();
+
   }
 }

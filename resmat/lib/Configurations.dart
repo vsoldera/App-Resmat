@@ -7,7 +7,11 @@ import 'Language.dart';
 const Locale ptbr = Locale("pt", "BR");
 const Locale english = Locale("en", "US");
 Future<String> switchDeLinguagem;
-
+Future<String> confBtnSetCor;
+var colorImperialButton;
+var colorInternationalButton;
+var colorPtButton;
+var colorEnButton;
 
 class ConfigurationsPage extends StatefulWidget{
   
@@ -22,12 +26,31 @@ class ConfigurationsPage extends StatefulWidget{
 class _ConfigButtonsWidget extends State<ConfigurationsPage> {
 
 
+   Future<String> verificaSetSistemaMedida() async{ //vai verificar no shared preferences o que o usuario havia selecionado, caso nao bata com nadoka seta international bb, pq esse é o role
+    String aux = await SharedPreferenceSetting().getSystem();
+    if(aux == "imperial"){
+      colorInternationalButton = Color.fromRGBO(255, 86, 113, 1);
+      colorImperialButton = Color.fromRGBO(143, 48, 58, 1);
+      return "imperial";
+    }
+    else{
+       colorImperialButton = Color.fromRGBO(255, 86, 113, 1);
+       colorInternationalButton = Color.fromRGBO(143, 48, 58, 1);
+      return "international"; 
+
+    }
+  }
+
   Future<String> verificaSetLinguagemDeUsuario() async{
     String aux = await SharedPreferenceSetting().getLanguage();
-    if(aux == "en"){  
+    if(aux == "en"){
+      colorEnButton =  Color.fromRGBO(143, 48, 58, 1);
+      colorPtButton =  Color.fromRGBO(255, 86, 113, 1);
       return "en";
     }
     else{
+       colorEnButton =   Color.fromRGBO(255, 86, 113, 1);
+      colorPtButton = Color.fromRGBO(143, 48, 58, 1);
       return "pt"; 
 
     }
@@ -35,6 +58,11 @@ class _ConfigButtonsWidget extends State<ConfigurationsPage> {
 
   
   Widget build(BuildContext context) {
+
+
+
+
+
     
     var body = Center(//BODY DO APP
       heightFactor: 3,
@@ -99,7 +127,7 @@ class _ConfigButtonsWidget extends State<ConfigurationsPage> {
                                          shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(10.0),
                                           side: BorderSide(color: Colors.red)),
-                                          color: Color.fromRGBO(255, 86, 113, 1),
+                                          color: colorEnButton,
                                           textColor: Colors.white,
                                           onPressed:   _toggleLanguageEN,
                                           child:  
@@ -129,7 +157,7 @@ class _ConfigButtonsWidget extends State<ConfigurationsPage> {
                                          shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(10.0),
                                           side: BorderSide(color: Colors.red)),
-                                          color: Color.fromRGBO(255, 86, 113, 1),
+                                          color: colorPtButton,
                                           textColor: Colors.white,
                                           onPressed:   _toggleLanguagePT,
                                           child:  
@@ -153,67 +181,91 @@ class _ConfigButtonsWidget extends State<ConfigurationsPage> {
                               ),
                             ),
                                 Align(alignment: Alignment.topLeft,child: Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "secondTitle"),textAlign: TextAlign.left, style: TextStyle(fontSize: 30, fontFamily: 'Myriad-Bold', color: Color.fromRGBO(77, 76, 76, 1)))),
-                                Container(
-                                  child:Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    const SizedBox(),
-                                    Expanded(
-                                      child: Container(
-                                      margin: EdgeInsets.fromLTRB(0, 10, 10, 0),
-                                      child: FlatButton(
-                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10.0),
-                                          side: BorderSide(color: Colors.red)),
-                                          color: Color.fromRGBO(255, 86, 113, 1),
-                                          textColor: Colors.white,
-                                          onPressed:  (){},
-                                          child:  
-                                          Row(
+
+                                FutureBuilder(
+                                  future: confBtnSetCor, // essa variavel vai definir qual sistema de media esta selecionado e mudar a cor dele de fundinho bjos
+                                  builder: (context, result) {
+                                    if (result.hasData) {
+
+                                      return   
+                                          Container(
+                                            child:Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                            children: <Widget>[
-                                              Container(
-                                              margin: EdgeInsets.fromLTRB(5, 0, 0, 0), // margin interna img e texto
-                                              height: 60,
-                                              child: Align(alignment: AlignmentDirectional.centerEnd ,child:Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "buttonSetMedida1"), style: TextStyle(fontSize: 18)))
+                                            children: [
+                                              const SizedBox(),
+                                              Expanded(
+                                                child: Container(
+                                                margin: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                                                child: FlatButton(
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(10.0),
+                                                    side: BorderSide(color: Colors.red)),
+                                                    color: colorInternationalButton,
+                                                    textColor: Colors.white,
+                                                    onPressed: _toggleSystemInternational,
+                                                    child:  
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                      children: <Widget>[
+                                                        Container(
+                                                        margin: EdgeInsets.fromLTRB(5, 0, 0, 0), // margin interna img e texto
+                                                        height: 60,
+                                                        child: Align(alignment: AlignmentDirectional.centerEnd ,child:Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "buttonSetMedida1"), style: TextStyle(fontSize: 18)))
+                                                        ),
+                                                      
+
+                                                      ],
+                                                    )  
+                                                ),
                                               ),
-                                            
-
-                                            ],
-                                          )  
-                                      ),
-                                    ),
-                                  ),
-                                    const SizedBox(),
-                                    Expanded(
-                                      child: Container(
-                                      margin: EdgeInsets.fromLTRB(0, 10, 10, 0),
-                                      child: FlatButton(
-                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10.0),
-                                          side: BorderSide(color: Colors.red)),
-                                          color: Color.fromRGBO(255, 86, 113, 1),
-                                          textColor: Colors.white,
-                                          onPressed:  (){},
-                                          child:  
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                            children: <Widget>[
-                                              Container(
-                                              margin: EdgeInsets.fromLTRB(5, 0, 0, 0), // margin interna img e texto
-                                              height: 60,
-                                              child: Align(alignment: AlignmentDirectional.centerEnd ,child:Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "buttonSetMedida2"), style: TextStyle(fontSize: 18)))
+                                            ),
+                                              const SizedBox(),
+                                              Expanded(
+                                                child: Container(
+                                                margin: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                                                child: FlatButton(
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(10.0),
+                                                    side: BorderSide(color: Colors.red)),
+                                                    color:colorImperialButton,
+                                                    textColor: Colors.white,
+                                                    onPressed:  _toggleSystemImperial,
+                                                    child:  
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                      children: <Widget>[
+                                                        Container(
+                                                        margin: EdgeInsets.fromLTRB(5, 0, 0, 0), // margin interna img e texto
+                                                        height: 60,
+                                                        child: Align(alignment: AlignmentDirectional.centerEnd ,child:Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "buttonSetMedida2"), style: TextStyle(fontSize: 18)))
+                                                        ),
+                                                      ],
+                                                    )  
+                                                ),
                                               ),
-                                            ],
-                                          )  
-                                      ),
-                                    ),
-                                  ),
+                                            ),
 
 
-                                  ],
-                                ),
-                                  )
+                                              ],
+                                            ),
+                                          );
+
+
+
+
+                                      
+                                    }else{
+                                       return Center(
+                                        child: CircularProgressIndicator(),
+                                       );
+                                    }
+
+                                  }
+                                )
+                                
+                                
+
+                           
                               ],
                             ),
                           );
@@ -234,11 +286,18 @@ class _ConfigButtonsWidget extends State<ConfigurationsPage> {
       appBar: null,
           body: body,  
       );
-  }
   
+  
+
+
+
+
+
+}
 
  void initState(){
     switchDeLinguagem =  verificaSetLinguagemDeUsuario(); // a chamada de valor DEVE SER SEMPRE antes do initSate*** devido a arvore de construcao do widget
+    confBtnSetCor = verificaSetSistemaMedida(); //seta logo de inicio o que vc quer mano, nao perde tempo, future is logo la
     super.initState();
 
   }
@@ -257,6 +316,19 @@ void _toggleLanguagePT() {
     //  var1 =  AppLocalizations.of(context).translate("configurations", "pt", "title");
     switchDeLinguagem = verificaSetLinguagemDeUsuario();
     //print("passei no pt\n");
+  });
+}
+
+void _toggleSystemImperial()  {
+  setState(() {
+    SharedPreferenceSetting().setSystem("imperial");
+    confBtnSetCor =  verificaSetSistemaMedida();
+  });
+}
+void _toggleSystemInternational()  {
+  setState(() {
+    SharedPreferenceSetting().setSystem("international");  
+    confBtnSetCor =  verificaSetSistemaMedida();
   });
 }
 
