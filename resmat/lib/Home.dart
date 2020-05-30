@@ -288,6 +288,12 @@ class _HomeWidget extends State<Home> {
   void initState(){
     switchDeLinguagem = verificaSetLinguagemDeUsuario(); // a chamada de valor DEVE SER SEMPRE antes do initSate*** devido a arvore de construcao do widget
     super.initState();
+     
+     //Lock landscape mode :)
+    SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp,
+    ]);
 
   }
 }
