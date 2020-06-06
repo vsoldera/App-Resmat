@@ -22,6 +22,7 @@
         },
     "calculationIndex":
         {
+            "backButtonText":"Voltar",
             "btn1":"Tensão de Cisalhamento e Ângulo",
             "btn2":"Template 2"
 

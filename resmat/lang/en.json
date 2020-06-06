@@ -20,6 +20,7 @@
         },
     "calculationIndex":
         {
+            "backButtonText":"Back",
             "btn1":"Max. Shear Stress & Angle",
             "btn2":"Template 2"
             
