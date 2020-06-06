@@ -281,8 +281,6 @@ class _HomeWidget extends State<Home> {
  
 
 
-
-
  return Scaffold(
         appBar: null,
         body: Container(

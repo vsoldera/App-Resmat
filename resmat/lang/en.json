@@ -17,6 +17,12 @@
             "secondTitle": "Measurement System",
             "buttonSetMedida1": "International",
             "buttonSetMedida2": "Imperial"
+        },
+    "calculationIndex":
+        {
+            "btn1":"Max. Shear Stress & Angle",
+            "btn2":"Template 2"
+            
         }
     
 

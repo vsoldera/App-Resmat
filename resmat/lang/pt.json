@@ -19,6 +19,13 @@
             "buttonSetMedida2": "Imperial"
 
 
+        },
+    "calculationIndex":
+        {
+            "btn1":"Tensão de Cisalhamento e Ângulo",
+            "btn2":"Template 2"
+
+            
         }
     
     

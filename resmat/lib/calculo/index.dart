@@ -1,10 +1,16 @@
 import 'dart:math';
-
+import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:resmat/Home.dart';
 import '../SharedSettings.dart';
 import '../Language.dart';
+
+
+import '../Configurations.dart';
+import '../calculo/index.dart';
+import '../Language.dart';
+import '../SharedSettings.dart';
 
 
 
@@ -37,196 +43,224 @@ class _CalculationIndexWidget extends State<CalculationIndex> {
   var anglePartFinal = 0.00;
 
   Widget build(BuildContext context) {
+     Future<String> verificaSetLinguagemDeUsuario() async{
+    String aux = await SharedPreferenceSetting().getLanguage();
+    if(aux == "en"){
+      return "en";
+    }
+    else{
+      return "pt"; 
 
-    var body = Container(
-        margin: EdgeInsets.fromLTRB(10, 50, 10, 0),
-        child: 
-        
-        ListView(
-          scrollDirection: Axis.vertical,
-          reverse: true,
-          children: <Widget>[
-            Column(
+    }
+  }
+
+  var btnVoltar =  FlatButton( 
+       onPressed: ( ) {
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()),     ModalRoute.withName("/Home") ); },                                          
+          child: Container(
+            decoration: new BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: Color.fromRGBO(255, 255, 255, 1),
+            ),
+            child: Row(
               children: <Widget>[
-                Row(
-                  children:<Widget>[
-                    Text("Diametro", style:TextStyle(fontSize:18)), 
-                    RaisedButton(
-                      onPressed: (){
-                        calculo();
-                      } ,
-                    )
-                  ],
+              SizedBox(
+              child: Image.asset('images/arrow.png'),
+              width: 20),
+              Align(alignment:  Alignment.topLeft,child: Text("Voltar",textAlign: TextAlign.left, style: TextStyle(fontSize: 25, fontFamily: 'Myriad-Regular',  color: Color.fromRGBO(77, 76, 76, 1))))
+              ],
+          )
+          )
+      );
+
+ var btn1 = Expanded(
+      child: Container(
+          decoration: new BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black26,
+                blurRadius: 10.0, // soften the shadow
+                spreadRadius: 0.0, //extend the shadow
+                offset: Offset(
+                  0.0, // Move to right 10  horizontally
+                  8.0, // Move to bottom 10 Vertically
                 ),
-                Row(
+              )
+            ],
+          ),
+          child: RaisedButton(
+            onPressed: () {},
+            textColor: Color(0xFFFF5671),
+            padding: const EdgeInsets.all(0.0),
+            child: Container(
+                height: 140,
+                decoration: BoxDecoration(
+                  color: Color(0xFFFFFF),
+                ),
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
                   children: <Widget>[
-                   Container(
-                     width: MediaQuery.of(context).size.width * 0.90, // para pegar em % de tela
-                     child: TextField(
-                        onChanged: (text){
-                          diametroValue = text;
-                        },
-                        decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Color.fromRGBO(137, 137, 137, 1))
-                        ),
-                        hintText: 'Enter a search term'
-                      ),
+                    Column(
+                      children: <Widget>[
+                        SizedBox(
+                            child: Image.asset('images/creditosicon.png'),
+                            width: 50)
+                      ],
                     ),
-                    )    
+                    Column(
+                      children: <Widget>[
+                        Container(
+                          alignment: Alignment.bottomRight,
+                          width: MediaQuery.of(context).size.width * 0.75,
+                          height: 100,
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          child: FutureBuilder(
+                            future: switchDeLinguagem,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return 
+                                  Text(AppLocalizations.of(context).translate("calculationIndex", snapshot.data, "btn1"), textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                  fontFamily: 'Myriad-Bold', fontSize: 24));
+                              }else{
+                                 return 
+                                 Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                              }
+                            
+                            
+                            }),
+                          
+                         
+                        )
 
-                    
+
+                      ],
+                    ),
                   ],
+                )),
+          )),
+    );
+ var btn2 = Expanded(
+      child: Container(
+          decoration: new BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black26,
+                blurRadius: 10.0, // soften the shadow
+                spreadRadius: 0.0, //extend the shadow
+                offset: Offset(
+                  0.0, // Move to right 10  horizontally
+                  8.0, // Move to bottom 10 Vertically
                 ),
-
-
-                Row(
-                  children:<Widget>[
-                    Text("Potência:", style:TextStyle(fontSize:18)), 
-                    RaisedButton(
-                      onPressed: (){
-                        print(powerValue+"Diametro Value");
-                      } ,
-                    )
-                  ],
+              )
+            ],
+          ),
+          child: RaisedButton(
+            onPressed: () {},
+            textColor: Color(0xFFFF5671),
+            padding: const EdgeInsets.all(0.0),
+            child: Container(
+                height: 140,
+                decoration: BoxDecoration(
+                  color: Color(0xFFFFFF),
                 ),
-                Row(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
                   children: <Widget>[
-                   Container(
-                     width: MediaQuery.of(context).size.width * 0.90, // para pegar em % de tela
-                     child: TextField(
-                        onChanged: (text){
-                          powerValue = text;
-                        },
-                        decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Color.fromRGBO(137, 137, 137, 1))
-                        ),
-                        hintText: 'Enter a search term'
-                      ),
+                    Column(
+                      children: <Widget>[
+                        SizedBox(
+                            child: Image.asset('images/creditosicon.png'),
+                            width: 50)
+                      ],
                     ),
-                    )    
+                    Column(
+                      children: <Widget>[
+                        Container(
+                          alignment: Alignment.bottomRight,
+                          width: MediaQuery.of(context).size.width * 0.75,
+                          height: 100,
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          child: FutureBuilder(
+                            future: switchDeLinguagem,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return 
+                                  Text(AppLocalizations.of(context).translate("calculationIndex", snapshot.data, "btn2"), textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                  fontFamily: 'Myriad-Bold', fontSize: 24));
+                              }else{
+                                 return 
+                                 Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                              }
+                            
+                            
+                            }),
+                          
+                         
+                        )
 
-                    
-                  ],
-                ),
 
-
-                Row(
-                  children:<Widget>[
-                    Text("Frequência:", style:TextStyle(fontSize:18)), 
-                    RaisedButton(
-                      onPressed: (){
-                        print(frequencyValue+"Frequency Value");
-                      } ,
-                    )
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                   Container(
-                     width: MediaQuery.of(context).size.width * 0.90, // para pegar em % de tela
-                     child: TextField(
-                        onChanged: (text){
-                          frequencyValue = text;
-                        },
-                        decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Color.fromRGBO(137, 137, 137, 1))
-                        ),
-                        hintText: 'Enter a search term'
-                      ),
+                      ],
                     ),
-                    )    
-
-                    
                   ],
-                ),
-
-
-                Row(
-                  children:<Widget>[
-                    Text("Módulo de Cisalhamento:", style:TextStyle(fontSize:18)), 
-                    RaisedButton(
-                      onPressed: (){
-                        print(shearModulusValue+"Shear Modulus Value");
-                      } ,
-                    )
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                   Container(
-                     width: MediaQuery.of(context).size.width * 0.90, // para pegar em % de tela
-                     child: TextField(
-                        onChanged: (text){
-                          shearModulusValue = text;
-                        },
-                        decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Color.fromRGBO(137, 137, 137, 1))
-                        ),
-                        hintText: 'Enter a search term'
-                      ),
-                    ),
-                    )    
-
-                    
-                  ],
-                ),
-
-                
-                  Row(
-                  children:<Widget>[
-                    Text("Comprimento (metros):", style:TextStyle(fontSize:18)), 
-                    RaisedButton(
-                      onPressed: (){
-                        print(beamLenghtValue+"Beam Lenght");
-                      } ,
-                    )
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                   Container(
-                     width: MediaQuery.of(context).size.width * 0.90, // para pegar em % de tela
-                     child: TextField(
-                        onChanged: (text){
-
-                          beamLenghtValue = text;
-                        },
-                        decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Color.fromRGBO(137, 137, 137, 1))
-                        ),
-                        hintText: 'Enter a search term'
-                      ),
-                    ),
-                    )    
-
-                    
-                  ],
-                ),
-
-              ]
-        )
-          ],
-        )
-        
-        
+                )),
+          )),
     );
 
+    var body = Container(
+        margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
 
-
-
-
+        child: Row(
+          
+          children: <Widget>[
+            btn1
+          ],
+        ) 
+      
+    );
+    
     return Scaffold(
       appBar: null,
-          body: Center(heightFactor: 5, child: body),  
-      );
+          body: Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("images/back2.png"), fit: BoxFit.fill)),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                  child:btnVoltar ,
+                ),
+                Container(
+                  child: Center(heightFactor: 1, child: body )
+                  ),    
+            ],
+            
+            ),
+    
+              
+      )
+    );
   
   
+  void initState(){
+    switchDeLinguagem = verificaSetLinguagemDeUsuario(); // a chamada de valor DEVE SER SEMPRE antes do initSate*** devido a arvore de construcao do widget
+    super.initState();
+     
+     //Lock landscape mode :)
+    SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp,
+    ]);
 
+  }
   
 
 
@@ -234,34 +268,6 @@ class _CalculationIndexWidget extends State<CalculationIndex> {
 }
 
  
-void calculo(){
-    setState(() {
-
-    //Pela teoria da torsão
-      torque = 
-      double.parse(powerValue) / (double.parse(frequencyValue) * ((2 * pi) )); // Valor do torque em kN m
-      print("Torque $torque");
-
-      polarMomentus = 
-        (pi / 32) * (pow(double.parse(diametroValue), 4)); //Cálculo do momento polar
-      print("Momento Polar $polarMomentus");
-
-      maxShearStress =
-        (torque * (double.parse(diametroValue) / 2)) / polarMomentus; // Tensao maxima de cisalhamento
-      print("Máximo Cisalhamento $maxShearStress");
-
-      anglePartOne =
-        (torque * double.parse(beamLenghtValue) ) / (double.parse(shearModulusValue) * polarMomentus); //theta
-      print("Angulo Parte 1 $anglePartOne");
-
-      anglePartFinal = 
-        (anglePartOne * (360 / (2 * pi))); //theta em graus / m
-      print("Angulo Parte Final $anglePartFinal");
-
-        print("Cisalhamento Maximo:$maxShearStress  Angulo Parte Final :$anglePartFinal");
-
-    });
-}
 
 
 }
