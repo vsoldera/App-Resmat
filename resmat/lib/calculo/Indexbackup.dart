@@ -112,7 +112,7 @@ class _CalculationIndexWidget extends State<CalculationIndex> {
                       RaisedButton(
                         onPressed: (){
                           calculo();
-                        } ,
+                        } 
                       )
                     ],
                   ),
