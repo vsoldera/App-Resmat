@@ -2,9 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'Configurations.dart';
+import 'Credits.dart';
 import 'Language.dart';
 import 'SharedSettings.dart';
 import 'Language.dart';
+
+Future<String> switchDeLinguagem;
 
 class Home extends StatefulWidget {
 
@@ -196,7 +199,12 @@ class _HomeWidget extends State<Home> {
             ],
           ),
           child: RaisedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => CreditsPage()),
+                  ModalRoute.withName("/Creditos"));
+            },
             textColor: Color(0xFFFF5671),
             padding: const EdgeInsets.all(0.0),
             child: Container(

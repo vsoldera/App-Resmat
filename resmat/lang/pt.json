@@ -19,7 +19,13 @@
             "buttonSetMedida2": "Imperial"
 
 
+        },
+        "credits":
+        {
+            "title" : "RESMAPP",
+            "title2": "Desenvolvedores",
+            "title3": "Orientador",
+            "button1": "Voltar"
         }
-    
     
 }
