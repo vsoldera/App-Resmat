@@ -1,31 +1,36 @@
 import 'package:flutter/material.dart';
-
+import 'package:resmat/Configurations.dart';
+import '../SharedSettings.dart';
+import '../Language.dart';
+import '../Configurations.dart';
 import '../Home.dart';
 
-void main() => runApp(new MyApp());
+  Future<String> switchDeLinguagem;
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: VariousTorques(),
-    );
-  }
+class Template1 extends StatefulWidget {
+    _Template1Widget createState() => _Template1Widget();
 }
 
-class VariousTorques extends StatefulWidget {
-  @override
-  _VariousTorquesState createState() => _VariousTorquesState();
-}
+class _Template1Widget extends State<Template1> {
 
-class _VariousTorquesState extends State<VariousTorques> {
   var barLength = [];
-
   List<Widget> list = new List();
 
+
+  Future<String> verificaSetLinguagemDeUsuario() async{
+    String aux = await SharedPreferenceSetting().getLanguage();
+    if(aux == "en"){
+      return "en";
+    }
+    else{
+      return "pt"; 
+
+    }
+  }
   @override
   Widget build(BuildContext context) {
-    var btnVoltar = FlatButton(
+    var btnVoltar =  
+      FlatButton(
         onPressed: () {
           Navigator.pushAndRemoveUntil(
               context,
@@ -44,50 +49,92 @@ class _VariousTorquesState extends State<VariousTorques> {
                         fontFamily: 'Myriad-Regular',
                         color: Color.fromRGBO(77, 76, 76, 1))))
           ],
-        ));
+        )
+      );
 
 
+    var containerListBuilder = 
+            ListView(
+              children: <Widget>[
+                TextField(
+                            onChanged: (text){
+                          
+                            },
+                            decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Color.fromRGBO(137, 137, 137, 1))
+                            ),
+                            hintText: 'Enter a search term'
+                          ),
+                        ),
+                       
+              Container(
+                  padding: EdgeInsets.all(20.0),
+                  child: new ListView.builder(
+                  physics: ScrollPhysics(), //que FISICO! 
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: list.length,
+                  itemBuilder: (context, index) {
+                    final item = list[index];
+                    Widget widget = list.elementAt(index);
 
+                    return 
+                    Dismissible(
+                          direction: DismissDirection.endToStart,
+                          // Each Dismissible must contain a Key. Keys allow Flutter to
+                          // uniquely identify widgets.
+                          key: ValueKey(item),
+                          // Provide a function that tells the app
+                          // what to do after an item has been swiped away.
+                          onDismissed: (direction) {
+                            // Remove the item from the data source.
+                            setState(() {
 
-    return new Scaffold(
-        body: new Container(
-            padding: EdgeInsets.all(20.0),
-            child: new ListView.builder(
-                itemCount: list.length,
-                itemBuilder: (context, index) {
-                  final item = list[index];
-                  Widget widget = list.elementAt(index);
+                              if (index % 2 == 0) { 
+                                list.removeAt(index+1);
+                                list.removeAt(index);
+                                }
+                              else{
+                                list.removeAt(index);
+                                list.removeAt(index-1);
+                              }
 
-                  return Dismissible(
-                    // Each Dismissible must contain a Key. Keys allow Flutter to
-                    // uniquely identify widgets.
-                    key: ValueKey(item),
-                    // Provide a function that tells the app
-                    // what to do after an item has been swiped away.
-                    onDismissed: (direction) {
-                      // Remove the item from the data source.
-                      setState(() {
+                              
+                            });
+                            Scaffold.of(context).showSnackBar(SnackBar(
+                                content: Text("Conjunto foi excluído com sucesso!")));
+                          },
+                          
+                          background: Container(alignment: Alignment.centerRight, padding: EdgeInsets.fromLTRB(0, 0, 10, 0),color: Colors.red, child: Icon(IconData(59694, fontFamily: 'MaterialIcons' ), color: Color.fromRGBO(255, 255, 255, 1))),
+                          
+                          child: widget,
+                        );
+                    
+                  })
+          )
+          ],);
 
-                        if (index % 2 == 0) { 
-                          list.removeAt(index+1);
-                          list.removeAt(index);
-                          }
-                        else{
-                          list.removeAt(index);
-                          list.removeAt(index-1);
-                        }
+    var body = 
+      FutureBuilder(
+        future: switchDeLinguagem,
+        builder: (context, snap){
+          if(snap.hasData){
+            
+            return containerListBuilder;
 
-                        
-                      });
-                      Scaffold.of(context).showSnackBar(SnackBar(
-                          content: Text("Conjunto foi excluído com sucesso!")));
-                    },
+          }else{
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        }
+      );
+              
 
-                    background: Container(color: Colors.red),
-                    child: widget,
-                  );
-                })),
-        floatingActionButton: new FloatingActionButton.extended(
+    
+
+    var floatingButton = new FloatingActionButton.extended(
           onPressed: () {
             var comboInput = list.add(
               TextField(
@@ -99,6 +146,7 @@ class _VariousTorquesState extends State<VariousTorques> {
               ),
             );
             list.add(
+             
               TextField(
                 onChanged: (text) {
                   barLength[list.length] = int.parse(text);
@@ -107,22 +155,46 @@ class _VariousTorquesState extends State<VariousTorques> {
                 decoration: InputDecoration(hintText: 'Posição "X": '),
               ),
             );
+            list.add(
+             
+              
+              SizedBox(height: 80,),
+            );
             setState(() {});
           },
           icon: Icon(IconData(57669, fontFamily: 'MaterialIcons')),
           label: Text("Torque"),
-        ));
+        );
+    
+    
+    
+    return new Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ), 
+         title: Text("Sample"),
+        centerTitle: true,
+      ),
+        body: Container(height: 1500, child:body),
+        floatingActionButton: floatingButton,
+
+  
+    );
 
 
 
 
 
 
-
+  }
 
     //Deixar esta merda
-    void initState() {
-      super.initState();
-    }
+   void initState(){
+    switchDeLinguagem = verificaSetLinguagemDeUsuario(); // a chamada de valor DEVE SER SEMPRE antes do initSate*** devido a arvore de construcao do widget
+    super.initState();
+     
   }
+
 }
