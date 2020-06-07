@@ -17,9 +17,15 @@
             "secondTitle": "Measurement System",
             "buttonSetMedida1": "International",
             "buttonSetMedida2": "Imperial"
+        },
+        "credits":
+        {
+            "title" : "RESMAPP",
+            "title2": "Developers",
+            "title3": "Advisor",
+            "button1": "Back"
         }
     
-
 
     
     
