@@ -6,6 +6,7 @@ import 'package:resmat/Home.dart';
 import '../SharedSettings.dart';
 import '../Language.dart';
 import '../Configurations.dart';
+import 'template1.dart';
 
 
 class CalculationIndex extends StatefulWidget{
@@ -106,7 +107,7 @@ class _CalculationIndexWidget extends State<CalculationIndex> {
                                       
                                     ),
                                   child: RaisedButton(
-                                    onPressed: () {  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()),     ModalRoute.withName("/Home") );
+                                    onPressed: () {  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => MyApp()),     ModalRoute.withName("/Home") );
                                     },                                          
                                     textColor: Color(0xFFFF5671),
                                     padding: const EdgeInsets.all(0.0),
