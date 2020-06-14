@@ -24,8 +24,20 @@
             "btn1":"Max. Shear Stress & Angle",
             "btn2":"Template 2"
             
+        },
+        "template1":
+        {
+            "backButtonText":"Back",
+            "deleteMsg": "Set was successfully deleted!",
+            "btn1": "Beam Length (feet):",
+            "btn2": "Radius (feet):",
+            "btn3": "Shear Module: ",
+            "listTorque": "'X' Position",
+            "addTorqueAlert": "Press '+ Torque' to add a torsion",
+            "calculateButton": "CALCULATE"
+
         }
-    
+        
 
 
     
