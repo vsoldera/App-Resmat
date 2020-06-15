@@ -36,9 +36,14 @@
             "addTorqueAlert": "Press '+ Torque' to add a torsion",
             "calculateButton": "CALCULATE"
 
+        "credits":
+        {
+            "title" : "RESMAPP",
+            "title2": "Developers",
+            "title3": "Advisor",
+            "button1": "Back"
         }
         
-
 
     
     
