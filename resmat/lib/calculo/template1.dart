@@ -287,7 +287,7 @@ class Template1 extends StatefulWidget {
                       onChanged: (text) {
                         //print("posicao X"+aux.toString());
                            dados.posicaoX[aux.round()] = double.parse(text);
-
+                          
                       },
                       decoration: InputDecoration(hintText: AppLocalizations.of(context).translate("template1", snap.data, "listTorque")),
                     ),

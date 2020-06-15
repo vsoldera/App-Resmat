@@ -35,7 +35,7 @@
             "listTorque": "'X' Position",
             "addTorqueAlert": "Press '+ Torque' to add a torsion",
             "calculateButton": "CALCULATE"
-
+        },
         "credits":
         {
             "title" : "RESMAPP",

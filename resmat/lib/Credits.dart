@@ -167,7 +167,7 @@ var btnVoltar =
             padding: EdgeInsets.fromLTRB(5, 10, 0, 0) ,
             child: RichText(
                   text: TextSpan(
-                    text: 'Lo Banana',
+                    text: 'Prof.: Fábio',
                     style: estiloCorpoTexto,
                   ),
               ) ,

@@ -11,7 +11,6 @@ import 'SharedSettings.dart';
 Future<String>switchDeLinguagem;
 
 
-Future<String> switchDeLinguagem;
 
 class Home extends StatefulWidget {
 
