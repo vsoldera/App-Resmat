@@ -7,6 +7,8 @@ import 'calculo/index.dart';
 import 'Language.dart';
 import 'SharedSettings.dart';
 
+Future<String>switchDeLinguagem;
+
 
 class Home extends StatefulWidget {
 

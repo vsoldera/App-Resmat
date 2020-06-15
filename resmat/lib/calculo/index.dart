@@ -8,7 +8,7 @@ import '../Language.dart';
 import '../Configurations.dart';
 import 'template1.dart';
 
-
+Future<String> switchDeLinguagem;
 class CalculationIndex extends StatefulWidget{
   
   _CalculationIndexWidget createState() => _CalculationIndexWidget();
@@ -107,7 +107,7 @@ class _CalculationIndexWidget extends State<CalculationIndex> {
                                       
                                     ),
                                   child: RaisedButton(
-                                    onPressed: () {  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => MyApp()),     ModalRoute.withName("/Home") );
+                                    onPressed: () {  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Template1()),     ModalRoute.withName("/Home") );
                                     },                                          
                                     textColor: Color(0xFFFF5671),
                                     padding: const EdgeInsets.all(0.0),
