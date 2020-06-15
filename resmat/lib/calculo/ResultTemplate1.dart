@@ -7,6 +7,7 @@ import '../Configurations.dart';
 import '../Home.dart';
 import 'index.dart';
 import 'template1.dart';
+import 'dart:math';
 
 
 
@@ -18,22 +19,48 @@ import 'template1.dart';
 }
 
 class _ResultTemplate1Widget extends State<ResultTemplate1> {
-       Dados dados2 =new Dados();
-
+  Dados dados2 =new Dados();
   _ResultTemplate1Widget({Key key, @required this.dados2});
+  
+  //Pela teoria da torsão
+  var torque = 0.00;
+   
+  var polarMomentus = 0.00;
 
+  var maxShearStress = 0.00;
+
+  var anglePartOne = 0.00;
+
+  var anglePartFinal = 0.00;
     
-
+  var pi = 3.141516;
   
   Widget build(BuildContext context) {
-    print("raio:"+dados2.getRaio().toString());
-    print("tamanho barra:"+dados2.getTamanhoBarra().toString());
-    print("Modulo de Cisalhamento:"+dados2.getModuloCisalhamento().toString());
-    int i;
-    for(i=0; i< 1; i++){
-      print("torque"+dados2.torques.toString());
-      print("posicao X"+ dados2.posicaoX[i].toString());
-    }
+    //print("raio:"+dados2.getRaio().toString());
+    //print("tamanho barra:"+dados2.getTamanhoBarra().toString());
+    //print("Modulo de Cisalhamento:"+dados2.getModuloCisalhamento().toString());
+    print("torque"+dados2.torques.toString());
+    print("posicao X"+ dados2.posicaoX.toString());
+        
+
+    final double num = ModalRoute.of(context).settings.arguments;//total de itens enviados quanto a torque e 
+   print("n"+ num.toString());
+
+    sort(num); // ira ordenar as posicoes X, em contrapartida leva junto os torques
+
+    print("torques: "+dados2.torques.toString());
+    print("posicao X"+ dados2.posicaoX.toString());
+
+    polarMomentus = 
+      (pi / 32) * (pow((dados2.getRaio()*2), 4)); //Cálculo do momento polar
+    print("Momento Polar $polarMomentus");
+  
+    //print("Cisalhamento Maximo:$maxShearStress  Angulo Parte Final :$anglePartFinal");
+
+
+    double angulo_total = getAnguloRadianos(num, polarMomentus);
+
+    print("Angulo Total: "+ angulo_total.toString() );
 
 
     // TODO: implement build
@@ -69,6 +96,41 @@ class _ResultTemplate1Widget extends State<ResultTemplate1> {
         );
   }
 
+
+
+    void sort(double n){
+      double aux;
+        for(int i=0;i<n - 1;i++){
+          for (int j = 0; j < n-i-1; j++){
+              if (dados2.posicaoX[j] > dados2.posicaoX[j+1])  {
+                  aux = dados2.posicaoX[j];
+                  dados2.posicaoX[j] = dados2.posicaoX[j+1];
+                  dados2.posicaoX[j+1] = aux;
+                  aux = dados2.torques[j];
+                  dados2.torques[j] = dados2.torques[j+1];
+                  dados2.torques[j+1] = aux;
+              }
+            }
+          }
+        }
+
+    double getAnguloRadianos(double num, double polar){
+      double angulo_total=0.00;
+
+      double torque_atual = 0.00;
+    
+      for(int i=0;i<num;i++){
+          torque_atual = torque_atual + dados2.torques[i];
+        if(i<num-1){
+            angulo_total += ( -1*torque_atual*(dados2.posicaoX[i+1]-dados2.posicaoX[i]))/(dados2.getModuloCisalhamento() * polar);
+        }
+        else{
+            angulo_total += ( -1*torque_atual * dados2.getTamanhoBarra() - dados2.posicaoX[i]) /(dados2.getModuloCisalhamento() * polar);
+        }
+      }
+
+      return angulo_total;
+    }
 
 }
 
