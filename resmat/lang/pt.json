@@ -20,6 +20,25 @@
 
 
         },
+    "calculationIndex":
+        {
+            "backButtonText":"Voltar",
+            "btn1":"Tensão de Cisalhamento e Ângulo",
+            "btn2":"Template 2"
+
+            
+        },
+        "template1":
+        {
+            "backButtonText":"Voltar",
+            "deleteMsg": "Conjunto foi excluído com sucesso!",
+            "btn1": "Tamanho da Barra (m):",
+            "btn2": "Raio (m):",
+            "btn3": "Módulo de Cisalhamento: ",
+            "listTorque": "Posição 'X'",
+            "addTorqueAlert": "Aperte em '+ Torque' para adicionar uma torção",
+            "calculateButton": "CALCULAR"
+        },
         "credits":
         {
             "title" : "RESMAPP",
@@ -27,5 +46,6 @@
             "title3": "Orientador",
             "button1": "Voltar"
         }
+        
     
 }

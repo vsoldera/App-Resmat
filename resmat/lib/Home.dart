@@ -1,11 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:resmat/calculo/index.dart';
 import 'Configurations.dart';
+import 'calculo/index.dart';
 import 'Credits.dart';
 import 'Language.dart';
 import 'SharedSettings.dart';
-import 'Language.dart';
+
+Future<String>switchDeLinguagem;
+
 
 Future<String> switchDeLinguagem;
 
@@ -49,7 +53,12 @@ class _HomeWidget extends State<Home> {
                       ],
                     ),
                     child: RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => CalculationIndex()),
+                        ModalRoute.withName("caculo/index"));
+                      },
                       textColor: Color(0xFFFF5671),
                       padding: const EdgeInsets.all(0.0),
                       child: Container(
@@ -280,8 +289,6 @@ class _HomeWidget extends State<Home> {
       ),
     );
  
-
-
 
 
  return Scaffold(
