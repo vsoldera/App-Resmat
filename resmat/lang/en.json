@@ -36,6 +36,12 @@
             "addTorqueAlert": "Press '+ Torque' to add a torsion",
             "calculateButton": "CALCULATE"
         },
+        "resultTemplate1":
+        {
+            "backButtonText":"Back",
+            "title1": "Polar Moment (feet^4)",
+            "title2": "Total Angle (rad)"
+        },
         "credits":
         {
             "title" : "RESMAPP",

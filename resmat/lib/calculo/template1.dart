@@ -88,7 +88,7 @@ class Template1 extends StatefulWidget {
                   FlatButton(
                   padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
                   onPressed: () {
-                     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => CalculationIndex()),     ModalRoute.withName("/Calculation Index") ); 
+                     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()),     ModalRoute.withName("/Calculation Index") ); 
                   },
                   child: Row(
                     children: <Widget>[
@@ -162,7 +162,7 @@ class Template1 extends StatefulWidget {
       
                     Text(
                       
-                      "Aperte em '+ Torque' para adicionar uma torção", textAlign: TextAlign.center,
+                       AppLocalizations.of(context).translate("template1",snap.data, "addTorqueAlert"), textAlign: TextAlign.center,
                       style:TextStyle(fontSize: 20, fontFamily: 'Myriad-Bold', color: Color.fromRGBO(255, 85, 113, 1)),
       
                     ),
@@ -268,7 +268,7 @@ class Template1 extends StatefulWidget {
                 FloatingActionButton.extended(
                 onPressed: () {
                   final aux = list.length/2;//variavel final nao muda, um dinamico vira imutavel para a instacia
-                  print("Posicao da lista "+aux.toString());
+                  //print("Posicao da lista "+aux.toString());
                   list.add(
                     TextFormField(
                       validator: confereTorque,
