@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:resmat/calculo/index.dart';
 import 'Configurations.dart';
 import 'calculo/index.dart';
+import 'calculo/template1.dart';
 import 'Credits.dart';
 import 'Language.dart';
 import 'SharedSettings.dart';
@@ -55,7 +56,7 @@ class _HomeWidget extends State<Home> {
                       onPressed: () {
                         Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => CalculationIndex()),
+                        MaterialPageRoute(builder: (context) => Template1()),
                         ModalRoute.withName("caculo/index"));
                       },
                       textColor: Color(0xFFFF5671),

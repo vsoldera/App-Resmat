@@ -261,7 +261,7 @@ class _ResultTemplate1Widget extends State<ResultTemplate1> {
            // print("ponto--------------------------------------------\n");
            // print(" "+dados2.posicaoX[i].toString()+","+torque_atual.toString());
            // print(" "+dados2.posicaoX[i+1].toString()+","+torque_atual.toString());
-            angulo_total += ( -1*torque_atual*(dados2.posicaoX[i+1]-dados2.posicaoX[i]))/(dados2.getModuloCisalhamento() * polar);
+            angulo_total += ( torque_atual*(dados2.posicaoX[i+1]-dados2.posicaoX[i]))/(dados2.getModuloCisalhamento() * polar);
         }
         else{
             myFakeTabletData.add(GrafTorcao(dados2.posicaoX[i],torque_atual));
@@ -269,7 +269,7 @@ class _ResultTemplate1Widget extends State<ResultTemplate1> {
            // print("ponto Final--------------------------------------------\n");
            // print(" "+dados2.posicaoX[i].toString()+","+torque_atual.toString());
            // print(" "+dados2.getTamanhoBarra().toString()+","+torque_atual.toString());
-            angulo_total += ( -1*torque_atual * dados2.getTamanhoBarra() - dados2.posicaoX[i]) /(dados2.getModuloCisalhamento() * polar);
+            angulo_total += ( torque_atual * dados2.getTamanhoBarra() - dados2.posicaoX[i]) /(dados2.getModuloCisalhamento() * polar);
         }
       }
 
