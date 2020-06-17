@@ -162,7 +162,7 @@ class Template1 extends StatefulWidget {
       
                     Text(
                       
-                      "Aperte em '+ Torque' para adicionar uma torção", textAlign: TextAlign.center,
+                       AppLocalizations.of(context).translate("template1",snap.data, "addTorqueAlert"), textAlign: TextAlign.center,
                       style:TextStyle(fontSize: 20, fontFamily: 'Myriad-Bold', color: Color.fromRGBO(255, 85, 113, 1)),
       
                     ),
