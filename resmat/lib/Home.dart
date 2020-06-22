@@ -83,8 +83,7 @@ class _HomeWidget extends State<Home> {
                                     padding: const EdgeInsets.fromLTRB(
                                         0, 135, 5, 10),
                                     width: MediaQuery.of(context).size.width * 0.35,
-                                    child: Flexible(
-                                      
+                                
                                    child: FutureBuilder(
                                       future: switchDeLinguagem,
                                       builder: (context, snapshot) {
@@ -102,7 +101,9 @@ class _HomeWidget extends State<Home> {
                                         }
                                       
                                       
-                                      })),
+                                      })
+                                      
+                                  
 
                                   )
                                 ],
