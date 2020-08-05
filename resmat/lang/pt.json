@@ -1,0 +1,45 @@
+{
+    "home":
+        {
+            "title" : "Início",
+            "button1": "CALCULAR",
+            "button2": "AJUSTES",
+            "button3": "CRÉDITOS"
+        }
+    ,
+    "configurations":
+        {
+            "backButtonText":"Voltar",
+            "headerTitle" : "Ajustes",
+            "title" : "Idioma",
+            "buttonEnglish": "Inglês",
+            "buttonPortuguese": "Português",
+            "secondTitle" : "Sistema de Medida",
+            "buttonSetMedida1": "Internacional",
+            "buttonSetMedida2": "Imperial"
+
+
+        },
+    "calculationIndex":
+        {
+            "backButtonText":"Voltar",
+            "btn1":"Tensão de Cisalhamento e Ângulo",
+            "btn2":"Template 2"
+
+            
+        },
+        "template1":
+        {
+            "backButtonText":"Voltar",
+            "deleteMsg": "Conjunto foi excluído com sucesso!",
+            "btn1": "Tamanho da Barra (m):",
+            "btn2": "Raio (m):",
+            "btn3": "Módulo de Cisalhamento: ",
+            "listTorque": "Posição 'X'",
+            "addTorqueAlert": "Aperte em '+ Torque' para adicionar uma torção",
+            "calculateButton": "CALCULAR"
+        }
+        
+    
+    
+}
