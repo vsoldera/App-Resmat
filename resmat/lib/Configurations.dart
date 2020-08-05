@@ -239,13 +239,13 @@ class _ConfigButtonsWidget extends State<ConfigurationsPage> {
                                                         height: 60,
                                                         child: Align(alignment: AlignmentDirectional.centerEnd ,child:Text(AppLocalizations.of(context).translate("configurations", snapshot.data, "buttonSetMedida2"), style: TextStyle(fontSize: 18)))
                                                         ),
+                                                      
                                                       ],
+                                                      
                                                     )  
                                                 ),
                                               ),
                                             ),
-
-
                                               ],
                                             ),
                                           );
@@ -261,11 +261,19 @@ class _ConfigButtonsWidget extends State<ConfigurationsPage> {
                                     }
 
                                   }
+                                ),
+                                SizedBox(height: 10),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child:
+                                  Text(
+                                  "Developing...",
+                                   style: TextStyle(fontSize: 17,color: Color.fromRGBO(255, 85, 113, 1)),
                                 )
-                                
-                                
+                                )
 
-                           
+
+                            
                               ],
                             ),
                           );
@@ -307,6 +315,8 @@ void _toggleLanguageEN()  {
     // var1 = AppLocalizations.of(context).translate("configurations", "en", "title");
     
     switchDeLinguagem =  verificaSetLinguagemDeUsuario();
+    SharedPreferenceSetting().setSystem("imperial");
+    confBtnSetCor =  verificaSetSistemaMedida();
     //print("Passei no en\n");
   });
 }
@@ -315,18 +325,27 @@ void _toggleLanguagePT() {
     SharedPreferenceSetting().setLanguage("pt");
     //  var1 =  AppLocalizations.of(context).translate("configurations", "pt", "title");
     switchDeLinguagem = verificaSetLinguagemDeUsuario();
+    SharedPreferenceSetting().setSystem("international");  
+    confBtnSetCor =  verificaSetSistemaMedida();
     //print("passei no pt\n");
   });
 }
 
 void _toggleSystemImperial()  {
   setState(() {
+    SharedPreferenceSetting().setLanguage("en");
+    // var1 = AppLocalizations.of(context).translate("configurations", "en", "title");
+    
+    switchDeLinguagem =  verificaSetLinguagemDeUsuario();
     SharedPreferenceSetting().setSystem("imperial");
     confBtnSetCor =  verificaSetSistemaMedida();
   });
 }
 void _toggleSystemInternational()  {
   setState(() {
+    SharedPreferenceSetting().setLanguage("pt");
+    //  var1 =  AppLocalizations.of(context).translate("configurations", "pt", "title");
+    switchDeLinguagem = verificaSetLinguagemDeUsuario();
     SharedPreferenceSetting().setSystem("international");  
     confBtnSetCor =  verificaSetSistemaMedida();
   });

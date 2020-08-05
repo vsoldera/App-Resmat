@@ -4,10 +4,13 @@ import 'package:flutter/services.dart';
 import 'package:resmat/calculo/index.dart';
 import 'Configurations.dart';
 import 'calculo/index.dart';
+import 'calculo/template1.dart';
+import 'Credits.dart';
 import 'Language.dart';
 import 'SharedSettings.dart';
 
 Future<String>switchDeLinguagem;
+
 
 
 class Home extends StatefulWidget {
@@ -53,11 +56,12 @@ class _HomeWidget extends State<Home> {
                       onPressed: () {
                         Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => CalculationIndex()),
+                        MaterialPageRoute(builder: (context) => Template1()),
                         ModalRoute.withName("caculo/index"));
                       },
                       textColor: Color(0xFFFF5671),
                       padding: const EdgeInsets.all(0.0),
+                      child: Expanded(
                       child: Container(
                           height: 200,
                           decoration: BoxDecoration(
@@ -73,24 +77,25 @@ class _HomeWidget extends State<Home> {
                                       width: 25)
                                 ],
                               ),
+                              
                               Column(
                                 children: <Widget>[
                                   Container(
                                     alignment: Alignment.bottomRight,
                                     padding: const EdgeInsets.fromLTRB(
                                         0, 135, 5, 10),
-                                    width: MediaQuery.of(context).size.width * 0.35,
-                                    child: Flexible(
+                                    width: MediaQuery.of(context).size.width * 0.34,
+                                    child: Expanded(
                                       
                                    child: FutureBuilder(
                                       future: switchDeLinguagem,
                                       builder: (context, snapshot) {
                                         if (snapshot.hasData) {
-                                          return 
-                                            Text(AppLocalizations.of(context).translate("home", snapshot.data, "button1"),                  overflow: TextOverflow.ellipsis,
-
+                                          return FittedBox(fit: BoxFit.scaleDown,
+                                            child: Text(AppLocalizations.of(context).translate("home", snapshot.data, "button1") ,                  overflow: TextOverflow.ellipsis,
+                                            
                                             style: TextStyle(
-                                            fontFamily: 'Myriad-Bold', fontSize: 24));
+                                            fontFamily: 'Myriad-Bold', fontSize: 24)));
                                         }else{
                                           return 
                                           Center(
@@ -104,12 +109,14 @@ class _HomeWidget extends State<Home> {
                                   )
                                 ],
                               ),
+                              
+                              
                             ],
                           )),
                     )
                     )
               
-
+                ),
         );
         
     var btnAjustes = Expanded(
@@ -205,7 +212,12 @@ class _HomeWidget extends State<Home> {
             ],
           ),
           child: RaisedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => CreditsPage()),
+                  ModalRoute.withName("/Creditos"));
+            },
             textColor: Color(0xFFFF5671),
             padding: const EdgeInsets.all(0.0),
             child: Container(

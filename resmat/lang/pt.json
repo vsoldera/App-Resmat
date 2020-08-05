@@ -38,8 +38,20 @@
             "listTorque": "Posição 'X'",
             "addTorqueAlert": "Aperte em '+ Torque' para adicionar uma torção",
             "calculateButton": "CALCULAR"
+        },
+        "resultTemplate1":
+        {
+            "backButtonText":"Voltar",
+            "title1": "Momento Polar (m^4)",
+            "title2": "Angulo Total (rad)"
+        },
+        "credits":
+        {
+            "title" : "RESMAPP",
+            "title2": "Desenvolvedores",
+            "title3": "Orientador",
+            "button1": "Voltar"
         }
         
-    
     
 }

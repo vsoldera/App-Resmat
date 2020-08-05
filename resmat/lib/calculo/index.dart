@@ -61,21 +61,6 @@ class _CalculationIndexWidget extends State<CalculationIndex> {
                                         Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()),     ModalRoute.withName("/Home") ); },                                          
                                         child: Container(
                                           padding: EdgeInsets.fromLTRB(15, 10, 10, 10),
-                                          decoration: new BoxDecoration(
-                                              borderRadius: BorderRadius.circular(5),
-                                              color: Color.fromRGBO(255, 255, 255, 1),
-                                              boxShadow: [
-                                                  BoxShadow(
-                                                    color: Colors.black26,
-                                                    blurRadius: 5.0, // soften the shadow
-                                                    spreadRadius: 0.0, //extend the shadow
-                                                    offset: Offset(
-                                                      0.0, // Move to right 10  horizontally
-                                                      2.0, // Move to bottom 10 Vertically
-                                                    ),
-                                                  )
-                                              ]
-                                          ),
                                           child: Row(
                                             children: <Widget>[
                                             SizedBox(
@@ -83,9 +68,9 @@ class _CalculationIndexWidget extends State<CalculationIndex> {
                                             width: 20),
                                             Align(
                                               child: 
-                                              Text(" "+ AppLocalizations.of(context).translate("calculationIndex", snapshot.data, "backButtonText"), textAlign: TextAlign.right,
+                                              Text(" "+ AppLocalizations.of(context).translate("calculationIndex", snapshot.data, "backButtonText"), textAlign: TextAlign.right, 
                                               style: TextStyle(
-                                              fontFamily: 'Myriad-Pro', fontSize: 24)),  
+                                              fontFamily: 'Myriad-Regular', fontSize: 24, color: Color.fromRGBO(33, 33, 33, 1))),  
                                             )
                                           ]
                                         )
@@ -95,7 +80,7 @@ class _CalculationIndexWidget extends State<CalculationIndex> {
                               ),
                             
                               ListView(
-                                padding: EdgeInsets.only(top: 15, bottom: 15, left: 0, right: 0),
+                                padding: EdgeInsets.only(top: 5, bottom: 15, left: 0, right: 0),
                                 scrollDirection: Axis.vertical,
                                 reverse: false,
                                 shrinkWrap: true,
