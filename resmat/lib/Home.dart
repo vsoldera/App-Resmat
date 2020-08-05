@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:resmat/calculo/index.dart';
 import 'Configurations.dart';
+import 'calculo/index.dart';
 import 'Language.dart';
 import 'SharedSettings.dart';
-import 'Language.dart';
+
+Future<String>switchDeLinguagem;
+
 
 class Home extends StatefulWidget {
 
@@ -45,7 +50,12 @@ class _HomeWidget extends State<Home> {
                       ],
                     ),
                     child: RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => CalculationIndex()),
+                        ModalRoute.withName("caculo/index"));
+                      },
                       textColor: Color(0xFFFF5671),
                       padding: const EdgeInsets.all(0.0),
                       child: Container(
@@ -53,7 +63,7 @@ class _HomeWidget extends State<Home> {
                           decoration: BoxDecoration(
                             color: Color(0xFFFFFF),
                           ),
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: <Widget>[
                               Column(
@@ -70,13 +80,15 @@ class _HomeWidget extends State<Home> {
                                     padding: const EdgeInsets.fromLTRB(
                                         0, 135, 5, 10),
                                     width: MediaQuery.of(context).size.width * 0.35,
-                                    child: 
-                                    FutureBuilder(
+                                    child: Flexible(
+                                      
+                                   child: FutureBuilder(
                                       future: switchDeLinguagem,
                                       builder: (context, snapshot) {
                                         if (snapshot.hasData) {
                                           return 
-                                            Text(AppLocalizations.of(context).translate("home", snapshot.data, "button1"),
+                                            Text(AppLocalizations.of(context).translate("home", snapshot.data, "button1"),                  overflow: TextOverflow.ellipsis,
+
                                             style: TextStyle(
                                             fontFamily: 'Myriad-Bold', fontSize: 24));
                                         }else{
@@ -87,7 +99,7 @@ class _HomeWidget extends State<Home> {
                                         }
                                       
                                       
-                                      }),
+                                      })),
 
                                   )
                                 ],
@@ -130,7 +142,7 @@ class _HomeWidget extends State<Home> {
                 decoration: BoxDecoration(
                   color: Color(0xFFFFFF),
                 ),
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: <Widget>[
                     Column(
@@ -201,7 +213,7 @@ class _HomeWidget extends State<Home> {
                 decoration: BoxDecoration(
                   color: Color(0xFFFFFF),
                 ),
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: <Widget>[
                     Column(
@@ -222,7 +234,7 @@ class _HomeWidget extends State<Home> {
                             builder: (context, snapshot) {
                               if (snapshot.hasData) {
                                 return 
-                                  Text(AppLocalizations.of(context).translate("home", snapshot.data, "button3"),textAlign: TextAlign.right,
+                                  Text(AppLocalizations.of(context).translate("home", snapshot.data, "button3"), textAlign: TextAlign.right,
                                   style: TextStyle(
                                   fontFamily: 'Myriad-Bold', fontSize: 24));
                               }else{
@@ -271,8 +283,6 @@ class _HomeWidget extends State<Home> {
  
 
 
-
-
  return Scaffold(
         appBar: null,
         body: Container(
@@ -285,6 +295,12 @@ class _HomeWidget extends State<Home> {
   void initState(){
     switchDeLinguagem = verificaSetLinguagemDeUsuario(); // a chamada de valor DEVE SER SEMPRE antes do initSate*** devido a arvore de construcao do widget
     super.initState();
+     
+     //Lock landscape mode :)
+    SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp,
+    ]);
 
   }
 }
