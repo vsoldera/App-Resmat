@@ -1,11 +1,6 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:resmat/Configurations.dart';
 import '../SharedSettings.dart';
 import '../Language.dart';
-import '../Configurations.dart';
-import '../Home.dart';
-import 'index.dart';
 import 'template1.dart';
 import 'dart:math';
 import 'package:charts_flutter/flutter.dart' as charts;
@@ -153,8 +148,6 @@ class _ResultTemplate1Widget extends State<ResultTemplate1> {
 
     //print("Angulo Total: "+ angulo_total.toString() );
 
-
-    // TODO: implement build
      return new Scaffold(
       appBar: null,
         body: Container(padding: EdgeInsets.fromLTRB(0, 30, 0, 0),height: 1500, 

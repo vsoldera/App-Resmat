@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'Configurations.dart'; //esse input tras o switch de lingugens e as funcoes de alteracao
 import 'SharedSettings.dart';
 import 'Language.dart';
 import 'Home.dart';

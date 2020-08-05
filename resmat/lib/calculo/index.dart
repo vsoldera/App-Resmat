@@ -1,11 +1,8 @@
-import 'dart:math';
-import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:resmat/Home.dart';
 import '../SharedSettings.dart';
 import '../Language.dart';
-import '../Configurations.dart';
 import 'template1.dart';
 
 Future<String> switchDeLinguagem;

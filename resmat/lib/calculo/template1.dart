@@ -1,11 +1,7 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:resmat/Configurations.dart';
 import '../SharedSettings.dart';
 import '../Language.dart';
-import '../Configurations.dart';
 import '../Home.dart';
-import 'index.dart';
 import 'ResultTemplate1.dart';
 
 
